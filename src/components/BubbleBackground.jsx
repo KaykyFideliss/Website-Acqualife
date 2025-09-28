@@ -51,7 +51,7 @@ const BubbleBackground = React.forwardRef(
       <div
         ref={containerRef}
         className={cn(
-          'relative w-full h-full overflow-hidden bg-gradient-to-br from-gray-300 to-gray-300', //BG DO HERO
+          'relative w-full h-full overflow-hidden bg-gradient-to-br from-gray-100 to-white', //BG DO HERO
           className
         )}
         {...props}
@@ -89,10 +89,11 @@ const BubbleBackground = React.forwardRef(
         <div className="absolute inset-0" style={{ filter: 'url(#goo) blur(40px)' }}>
           {/* Bubble 1 */}
           <motion.div
-            className="absolute rounded-full w-[80%] h-[80%] top-[10%] left-[10%] mix-blend-hard-light bg-[radial-gradient(circle_at_center,rgba(var(--first-color),0.8)_0%,rgba(var(--first-color),0)_50%)]"
+             className="absolute rounded-full w-[140%] h-[140%] top-[-20%] left-[-20%] mix-blend-hard-light bg-[radial-gradient(circle_at_center,rgba(var(--first-color),0.8)_0%,rgba(var(--first-color),0)_50%)]"
             animate={{ y: [-50, 50, -50] }}
             transition={{ duration: 30, ease: 'easeInOut', repeat: Infinity }}
           />
+
 
           {/* Bubble 2 rotating */}
           <motion.div
@@ -101,7 +102,7 @@ const BubbleBackground = React.forwardRef(
             animate={{ rotate: 360 }}
             transition={{ duration: 20, ease: 'linear', repeat: Infinity }}
           >
-            <div className="rounded-full w-[80%] h-[80%] mix-blend-hard-light bg-[radial-gradient(circle_at_center,rgba(var(--second-color),0.8)_0%,rgba(var(--second-color),0)_50%)]" />
+            <div className="rounded-full w-[50%] h-[50%] mix-blend-hard-light bg-[radial-gradient(circle_at_center,rgba(var(--second-color),0.8)_0%,rgba(var(--second-color),0)_50%)]" />
           </motion.div>
 
           {/* Bubble 3 rotating */}
