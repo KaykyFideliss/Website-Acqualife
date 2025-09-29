@@ -47,35 +47,35 @@ const Navbar = () => {
   {/* Links na direita */}
   <div className="flex gap-8 items-center">
     <a
-      className=" text-sm tracking-wider transition-colors text-[#6cc7f5]  hover:text-[#22333b] font-zalando"
+      className=" text-sm tracking-wider transition-colors text-[#22333b]  hover:text-[#6cc7f5] font-zalando" 
       href="#home"
       onClick={(e) => { e.preventDefault(); scrollToSection("home"); }}
     >
       Home
     </a>
     <a
-      className="text-sm tracking-wider transition-colors  text-[#59c8ff] hover:text-[#22333b] font-zalando"
+      className="text-sm tracking-wider transition-colors  text-[#22333b] hover:text-[#6cc7f5] font-zalando"
       href="#sobre"
       onClick={(e) => { e.preventDefault(); scrollToSection("about"); }}
     >
       Sobre
     </a>
     <a
-      className="text-sm tracking-wider transition-colors text-[#59c8ff] hover:text-[#22333b] font-zalando"
+      className="text-sm tracking-wider transition-colors text-[#22333b] hover:text-[#6cc7f5] font-zalando"
       href="#project"
       onClick={(e) => { e.preventDefault(); scrollToSection("project"); }}
     >
       Projetos e certificados
     </a>
     <a
-      className="text-sm tracking-wider transition-colors text-[#59c8ff] hover:text-[#22333b] font-zalando"
+      className="text-sm tracking-wider transition-colors text-[#22333b] hover:text-[#6cc7f5] font-zalando"
       href="#Services"
       onClick={(e) => { e.preventDefault(); scrollToSection("Services"); }}
     >
       Serviço Contratáveis
     </a>
     <a
-      className="text-sm tracking-wider transition-colors text-[#59c8ff] hover:text-[#22333b] font-zalando"
+      className="text-sm tracking-wider transition-colors text-[#22333b] hover:text-[#6cc7f5] font-zalando"
       href="#stacks"
       onClick={(e) => { e.preventDefault(); scrollToSection("stacks"); }}
     >
@@ -88,7 +88,7 @@ const Navbar = () => {
       {/* Botão Mobile */}
      <button
   style={{ zIndex: 60 }}
-  className="absolute right-4 md:hidden text-[#59c8ff] text-4xl"
+  className="absolute right-4 md:hidden text-[#22333b] text-4xl"
   onClick={() => setOpen(!open)}
 >
   <i className={open ? "bx bx-x" : "bx bx-menu"}></i>
@@ -121,7 +121,7 @@ const Navbar = () => {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 20 }}
           transition={{ delay: 0.3 + index * 0.1 }}
-          className="hover:text-[#ffffff] font-zalando text-[#59c8ff] text-2xl"
+          className="hover:text-[#ffffff] font-zalando text-[#22333b] text-2xl"
           onClick={(e) => {
             e.preventDefault();
             scrollToSection(section);
