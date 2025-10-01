@@ -41,7 +41,7 @@ const Navbar = () => {
 <div className="hidden md:flex justify-between items-center w-full px-8 pt-4">
   {/* Logo na esquerda */}
   <div>
-    <a href=""><img src="/assets/logo.png" alt="" className="w-20 h-20"/></a>
+    <a href=""><img src="/img/logo.png" alt="" className="w-20 h-20"/></a>
   </div>
 
   {/* Links na direita */}
