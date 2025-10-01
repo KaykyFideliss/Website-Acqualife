@@ -27,8 +27,9 @@ const Hero = () => {
         
         </div>
     
-      {/* Fade no rodapé (entre fundo e texto) */}
-      <div className="absolute bottom-0 left-0 w-full h-10 bg-gradient-to-t from-white/95 to-transparent z-10"></div>
+       {/* Fade no rodapé (entre fundo e texto) */}
+<div className="absolute bottom-0 left-0 w-full h-10 md:h-40 bg-gradient-to-t from-white/95 to-transparent z-0 md:z-10"></div>
+
     </section>
     
   )

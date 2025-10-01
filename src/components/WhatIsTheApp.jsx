@@ -26,7 +26,7 @@ const WhatIsTheApp = () => {
         <div className="flex-1 flex justify-center md:justify-start">
           <img
             className="max-w-full h-auto rounded-lg"
-            src="./public/img/home/mockeup-acqualife.png"
+            src="public/img/home/mockeup-acqualife.png"
             alt="Preview"
           />
         </div>
@@ -39,7 +39,7 @@ const WhatIsTheApp = () => {
         <div className="flex-1 flex justify-center md:justify-start">
           <img
             className="max-w-full h-auto rounded-lg"
-            src="./public/img/home/mockeup-acqualife.png"
+            src="public/img/home/mockeup-acqualife.png"
             alt="Preview"
           />
         </div>
