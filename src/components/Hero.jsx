@@ -3,7 +3,7 @@ import { BubbleBackground } from './BubbleBackground';
 
 const Hero = () => {
   return (
-        <section className=' h-screen flex items-center justify-center overflow-hidden '>
+        <section id='home' className=' h-screen flex items-center justify-center overflow-hidden '>
           
  {/* Fade no rodapé */}
   <div className="absolute bottom-0 left-0 w-full h-40 bg-gradient-to-t from-black to-transparent"></div>
