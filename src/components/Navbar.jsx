@@ -34,7 +34,7 @@ const Navbar = () => {
   transition={{ duration: 0.4, ease: "easeOut" }}
   viewport={{ amount: 0.5 }}
   className={`fixed top-0 left-0 w-full h-16 flex justify-center items-center z-40 transition-colors duration-500 ${
-    scrolled ? "bg-white/95 backdrop-blur-md shadow-lg" : "bg-transparent"
+    scrolled ? "bg-white/95 backdrop-blur-md " : "bg-transparent" //shadow-lg
   }`}
 >
       {/* Links Desktop */}

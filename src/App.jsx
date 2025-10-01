@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import Second from "./components/Second";
+import WhatIsTheApp from "./components/WhatIsTheApp";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         {/* <Route path="/contato" element={<Contato />} /> */}
       </Routes>
        <Second />
+       <WhatIsTheApp />
     </>
   );
 }
