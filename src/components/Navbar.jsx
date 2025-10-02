@@ -48,17 +48,16 @@ const Navbar = () => {
   <div className="flex gap-8 items-center">
     <a
       className=" text-sm tracking-wider transition-colors text-[#22333b]  hover:text-[#6cc7f5] font-zalando" 
-      href="#home"
-      onClick={(e) => { e.preventDefault(); scrollToSection("home"); }}
+      href="/"
+  
     >
       Home
     </a>
     <a
       className="text-sm tracking-wider transition-colors  text-[#22333b] hover:text-[#6cc7f5] font-zalando"
-      href="#sobre"
-      onClick={(e) => { e.preventDefault(); scrollToSection("about"); }}
+      href="./Page-Download"
     >
-      Sobre
+      Download
     </a>
     <a
       className="text-sm tracking-wider transition-colors text-[#22333b] hover:text-[#6cc7f5] font-zalando"

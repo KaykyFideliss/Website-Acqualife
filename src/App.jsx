@@ -4,24 +4,22 @@ import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import Second from "./components/Second";
 import WhatIsTheApp from "./components/WhatIsTheApp";
+import WhoTouse from "./components/WhoTouse";
+import Download from "./page/Download";
+import Home from "./page/Home";
 
 function App() {
   return (
     <>
       <Navbar />
-     
+
       <Routes>
-        {/* Rota principal */}
-        <Route path="/" element={<Hero />} />
-
-        {/* Outra página */}
-        <Route path="/second" element={<Second />} />
-
-        {/* Se quiser pode adicionar mais rotas */}
-        {/* <Route path="/contato" element={<Contato />} /> */}
+        
+        {/* principal */}
+        <Route path="/" element={<Home />} />
+        {/* Rota de download */}
+        <Route path="/Page-Download" element={<Download />} />
       </Routes>
-       <Second />
-       <WhatIsTheApp />
     </>
   );
 }
