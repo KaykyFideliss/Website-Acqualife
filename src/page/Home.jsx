@@ -3,7 +3,7 @@ import Hero from "../components/Hero";
 import Second from "../components/Second";
 import WhatIsTheApp from "../components/WhatIsTheApp";
 import WhoTouse from "../components/WhoTouse";
-
+import Footer from "../components/Footer";
 import Mockup from "../components/Mockup";
 
 
@@ -11,10 +11,12 @@ const Home = () => {
   return (
     <div>
       <Hero />
-         <Second />
-        <WhatIsTheApp />
-   <WhoTouse />
+      <Second />
+      <WhatIsTheApp />
+      <WhoTouse />
       <Mockup />
+      <Footer />
+
     </div>
   );
 };
