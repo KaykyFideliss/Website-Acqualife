@@ -1,14 +1,15 @@
 import React from 'react'
+import { motion } from 'framer-motion'
 import { BubbleBackground } from './BubbleBackground';
 
 const Hero = () => {
   return (
-        <section id='home' className=' h-screen flex items-center justify-center overflow-hidden '>
-          
- {/* Fade no rodapé */}
-  <div className="absolute bottom-0 left-0 w-full h-40 bg-gradient-to-t from-black to-transparent"></div>
+    <section id='home' className='h-screen flex items-center justify-center overflow-hidden'>
+      
+      {/* Fade no rodapé */}
+      <div className="absolute bottom-0 left-0 w-full h-40 bg-gradient-to-t from-black to-transparent"></div>
 
-       <BubbleBackground
+      <BubbleBackground
         interactive
         className="absolute inset-0 z-0 h-screen w-screen"
         colors={{
@@ -21,17 +22,60 @@ const Hero = () => {
         }}
       />
 
-        <div className='absolute z-10 text-center px-4'>
-            <h1 className='text-shadow-lg/30 text-5xl md:text-9xl font-bold font-zalando text-white mb-4 '>ACQUALIFE</h1>
-            <p className='text-lg font-zalando text-bold md:text-2xl text-white  mb-8'>Transformando gotas em esperanças</p>
+      {/* Texto com efeito blur in */}
+      <motion.div 
+        className='absolute z-10 text-center px-4'
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5 }}
+      >
+        <motion.h1 
+          className='text-shadow-lg/30 text-5xl md:text-9xl font-bold font-zalando text-white mb-4'
+          initial={{ 
+            opacity: 0, 
+            filter: "blur(15px)",
+            y: 40 
+          }}
+          animate={{ 
+            opacity: 1, 
+            filter: "blur(0px)",
+            y: 0 
+          }}
+          transition={{ 
+            duration: 1.2,
+            ease: "easeOut",
+            delay: 0.3 
+          }}
+        >
+          ACQUALIFE
+        </motion.h1>
         
-        </div>
-    
-     
+        <motion.p 
+          className='text-lg font-zalando text-bold md:text-2xl text-white mb-8'
+          initial={{ 
+            opacity: 0, 
+            filter: "blur(12px)",
+            y: 30 
+          }}
+          animate={{ 
+            opacity: 1, 
+            filter: "blur(0px)",
+            y: 0 
+          }}
+          transition={{ 
+            duration: 1,
+            ease: "easeOut",
+            delay: 0.8 
+          }}
+        >
+          Transformando gotas em esperanças
+        </motion.p>
+      </motion.div>
+
+      {/* Fade no rodapé (entre fundo e texto) */}
+      <div className="absolute bottom-0 left-0 w-full h-10 md:h-20 bg-gradient-to-t from-white/95 to-transparent z-0 md:z-10"></div>
 
     </section>
-    
-    
   )
 }
 
