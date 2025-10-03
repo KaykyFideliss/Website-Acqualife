@@ -11,11 +11,9 @@ const Home = () => {
   return (
     <div>
       <Hero />
+         <Second />
         <WhatIsTheApp />
-      <Second />
-    
    <WhoTouse />
-
       <Mockup />
     </div>
   );
