@@ -13,7 +13,7 @@ const Mockup = () => {
   }, []);
 
   return (
-    <section className=" overflow-x-hidden w-full min-h-screen  text-white flex flex-col justify-center items-center py-16">
+    <section className="overflow-x-hidden w-full   text-white flex-col justify-center items-center py-16">
       {/* Título */}
       <div className="flex flex-col justify-center items-center text-center ">
         <h1 className="text-2xl md:text-5xl font-bold font-zalando text-[#0D6DFF] mb-6">
@@ -22,10 +22,10 @@ const Mockup = () => {
       </div>
 
       {/* Texto */}
-      <div className="flex justify-center items-center mx-6 md:mx-20 lg:mx-40">
+      <div className="flex justify-center items-center md:mx-20 lg:mx-40">
         <p className=" text-xs mx-10 text-center font-zalando font-normal text-gray-700  lg:text-lg lg:text-justify">
-          Que tal monitorar o uso da água da chuva direto do seu celular?
-          Com o Acqualife, cada gota vale economia, consciência e um futuro mais verde.
+         
+          Com o Acqualife, cada gota vale a economia.
         </p>
       </div>
 
