@@ -63,7 +63,7 @@ const WhoTouse = () => {
           >
             <div className="">
               <h3 className="text-center pb-3 text-lg font-semibold">{card.title}</h3>
-              <p className="text-sm text-gray-200 mt-2">{card.text}</p>
+              <p className="text-sm text-justify text-gray-200 mt-2">{card.text}</p>
             </div>
             <button className="mb-2 mt-2 w-full bg-white text-[#0D6DFF] px-5 py-2 rounded-full text-sm font-semibold hover:bg-gray-200 transition-colors self-start">
               Saber mais
