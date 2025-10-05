@@ -55,31 +55,27 @@ const Navbar = () => {
     </a>
     <a
       className="text-sm tracking-wider transition-colors  text-[#22333b] hover:text-[#6cc7f5] font-zalando"
+      href="./Page-Sobre"
+    >
+      
+      Sobre
+    </a>
+     <a
+      className="text-sm tracking-wider transition-colors  text-[#22333b] hover:text-[#6cc7f5] font-zalando"
+      href="./Page-Sistema"
+    >
+      Sistema
+    </a>
+
+     <a
+      className="text-sm tracking-wider transition-colors  text-[#22333b] hover:text-[#6cc7f5] font-zalando"
       href="./Page-Download"
     >
+      
       Download
     </a>
-    <a
-      className="text-sm tracking-wider transition-colors text-[#22333b] hover:text-[#6cc7f5] font-zalando"
-      href="#project"
-      onClick={(e) => { e.preventDefault(); scrollToSection("project"); }}
-    >
-      Projetos e certificados
-    </a>
-    <a
-      className="text-sm tracking-wider transition-colors text-[#22333b] hover:text-[#6cc7f5] font-zalando"
-      href="#Services"
-      onClick={(e) => { e.preventDefault(); scrollToSection("Services"); }}
-    >
-      Serviço Contratáveis
-    </a>
-    <a
-      className="text-sm tracking-wider transition-colors text-[#22333b] hover:text-[#6cc7f5] font-zalando"
-      href="#stacks"
-      onClick={(e) => { e.preventDefault(); scrollToSection("stacks"); }}
-    >
-      Minhas stacks
-    </a>
+    
+   
   </div>
 </div>
 
