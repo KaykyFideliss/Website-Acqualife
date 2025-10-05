@@ -151,8 +151,7 @@ export default function VideoPlayer({
     >
       <video 
       
-        loop
-        autoPlay
+       
         ref={videoRef} 
         src={src} 
         poster={poster} 
