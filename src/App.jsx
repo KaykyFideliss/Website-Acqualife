@@ -20,13 +20,13 @@ function App() {
         {/* principal */}
         <Route path="/" element={<Home />} />
         {/* Rota de download */}
-        <Route path="/Page-Download" element={<Download />} />
+        <Route path="/download" element={<Download />} />
 
         {/* Rota sobre */}
-        <Route path="/Page-Sobre" element={<Sobre />} />
+        <Route path="/sobre" element={<Sobre />} />
 
         {/* Rota sistema */}
-        <Route path="/Page-Sistema" element={<Sistema />} />
+        <Route path="/sistema" element={<Sistema />} />
       </Routes>
     </>
   );
