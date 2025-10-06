@@ -14,8 +14,8 @@ const CarroselSistema = () => {
         transition={{ duration: 0.4, ease: "easeOut" }}
         viewport={{ once: false, amount: 0.2 }}
       >
-        <h1 className="text-2xl md:text-5xl font-bold font-zalando text-[#0D6DFF] mb-4 text-center mt-8">
-          O QUE É UM ARDUINO ?
+        <h1 className="text-xl md:text-5xl font-bold font-zalando text-[#0D6DFF] mb-1 text-center mt-8">
+          O CÉREBRO INTELIGENTE DO ACQUALIFE
         </h1>
       </motion.div>
 <div className='flex justify-center items-center mx-2 px-4 md:mx-24 lg:mx-48'>
