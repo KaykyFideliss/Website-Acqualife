@@ -36,7 +36,7 @@ const Motivation = () => {
     <section className="py-20 w-full h-screen flex items-center justify-center bg-white px-6">
 
     <motion.div 
-  className=" text-center text-gray-900 text-5xl md:text-7xl font-bold font-zalando leading-snug"
+  className=" text-center text-gray-900 text-4xl md:text-7xl font-bold font-zalando leading-snug"
   variants={containerVariants}
   initial="hidden"
   whileInView="visible"
@@ -69,21 +69,7 @@ const Motivation = () => {
   <motion.span variants={textVariants} className="inline-block text-blue-500">
     transformação
   </motion.span>{' '}
-  <motion.span variants={textVariants} className="inline-block">
-    e
-  </motion.span>{' '}
-  <motion.span variants={textVariants} className="inline-block text-blue-500">
-    cuidado
-  </motion.span>{' '}
-  <motion.span variants={textVariants} className="inline-block">
-    com
-  </motion.span>{' '}
-  <motion.span variants={textVariants} className="inline-block text-blue-500">
-    o
-  </motion.span>{' '}
-  <motion.span variants={textVariants} className="inline-block text-blue-500">
-    planeta.
-  </motion.span>
+
 </motion.div>
 
 

@@ -29,7 +29,7 @@ const Components = () => {
         <h1 className="text-xl md:text-5xl font-bold font-zalando text-[#0D6DFF]  text-center">
           COMPONENTES PARA A MONTAGEM DO SISTEMA
         </h1>
-             <p className="pt-4 text-legenda font-zalando text-sm md:text-base lg:text-base ">Conheça os componentes essenciais que dão vida ao nosso sistema. Cada peça foi escolhida para garantir eficiência, segurança e desempenho máximo.</p>
+             <p className="pt-4 text-legenda font-zalando text-sm md:text-base lg:text-base text-center ">Conheça os componentes essenciais que dão vida ao nosso sistema. Cada peça foi escolhida para garantir eficiência, segurança e desempenho máximo.</p>
       </motion.div>
 
 
