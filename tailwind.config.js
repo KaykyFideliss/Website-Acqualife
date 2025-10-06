@@ -11,6 +11,7 @@ export default {
       },
       colors: {
         "azul-style": "#0D6DFF", // nome customizado
+        "legenda": "#22333b",
       },
     },
   },

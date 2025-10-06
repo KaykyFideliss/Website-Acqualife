@@ -4,7 +4,7 @@ import VideoPlayer from './Video-player'
 
 const CarroselSistema = () => {
   return (
-    <section className='h-screen w-full  '>
+    <section className="w-full min-h-screen text-white px-6 md:px-20 py-16 flex flex-col items-center">
 
  {/* Título super rápido */}
       <motion.div 
@@ -20,10 +20,10 @@ const CarroselSistema = () => {
       </motion.div>
 <div className='flex justify-center items-center mx-2 px-4 md:mx-24 lg:mx-48'>
   <div className='text-justify '>
-    <p className='font-zalando text-base text-azul-style mb-6 md:text-xl'>
+    <p className='font-zalando text-base text-gray-900 mb-6 md:text-xl'>
       Nosso sistema, movido por Arduino, monitora e reutiliza a água de forma inteligente, controlando sensores, filtros e bombas com eficiência e segurança. O Acqualife reduz o desperdício e torna o uso da água mais consciente,você acompanha tudo em tempo real pelo nosso aplicativo.
     </p>
-    <p className='font-zalando text-base text-azul-style mb-2 md:text-xl'>
+    <p className='font-zalando text-base text-gray-900 mb-2 md:text-xl'>
     Fácil de instalar, escalável e sustentável, o Acqualife se adapta a residências, escolas, empresas e prédios públicos, oferecendo uma solução prática para economizar água e reduzir custos. Com tecnologia acessível e monitoramento em tempo real, ele transforma a forma como você consome e valoriza esse recurso essencial, promovendo um impacto positivo no meio ambiente e na comunidade.  
     </p>
   </div>
