@@ -1,12 +1,13 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import { BubbleBackground } from './BubbleBackground';
+import { FaArrowDown } from "react-icons/fa";
 
-const Hero = () => {
+const HeroDownload = () => {
   return (
     <section id='home' className='h-screen flex items-center justify-center overflow-hidden'>
       
-     
+
 
       <BubbleBackground
         interactive
@@ -19,12 +20,9 @@ const Hero = () => {
           fifth: '18,113,255',
           sixth: '18,113,255',
         }}
-
-        
       />
-  {/* Fade no rodapé (entre fundo e texto) */}
-      <div className="absolute bottom-0 left-0 w-full h-10 md:h-20 bg-gradient-to-t from-white/95 to-transparent z-0 md:z-10"></div>
 
+  
 
       {/* Texto com efeito blur in */}
       <motion.div 
@@ -33,6 +31,10 @@ const Hero = () => {
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
       >
+
+        <p>
+          
+        </p>
         <motion.h1 
           className='text-shadow-lg/30 text-5xl md:text-9xl font-bold font-zalando text-white mb-4'
           initial={{ 
@@ -51,7 +53,7 @@ const Hero = () => {
             delay: 0.3 
           }}
         >
-          ACQUALIFE
+          DOWNLOAD
         </motion.h1>
         
         <motion.p 
@@ -72,13 +74,14 @@ const Hero = () => {
             delay: 0.8 
           }}
         >
-          Transformando gotas em esperanças
+          Dê o primeiro passo para economizar
         </motion.p>
       </motion.div>
 
-          
+
+
     </section>
   )
 }
 
-export default Hero
+export default HeroDownload
