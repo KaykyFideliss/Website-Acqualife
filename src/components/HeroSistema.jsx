@@ -6,8 +6,6 @@ const Hero = () => {
   return (
     <section id='home' className='h-screen flex items-center justify-center overflow-hidden'>
       
-      {/* Fade no rodapé */}
-      <div className="absolute bottom-0 left-0 w-full h-40 bg-gradient-to-t from-black to-transparent"></div>
 
       <BubbleBackground
         interactive
@@ -72,8 +70,6 @@ const Hero = () => {
         </motion.p>
       </motion.div>
 
-      {/* Fade no rodapé (entre fundo e texto) */}
-      <div className="absolute bottom-0 left-0 w-full h-10 md:h-20 bg-gradient-to-t from-white/95 to-transparent z-0 md:z-10"></div>
 
     </section>
   )

@@ -1,11 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { FaFilter } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 const WhoTouse = () => {
+  const navigate = useNavigate();
+  const [isMobile, setIsMobile] = useState(false);
+
   const cards = [
     {
-      title: "Capitação de água",
+      title: "Captação de água",
       text: "Sistema inteligente de captação de água que monitora o nível em tempo real, garantindo abastecimento contínuo e evitando desperdícios.",
     },
     {
@@ -20,12 +24,13 @@ const WhoTouse = () => {
       title: "Distribuição Eficiente",
       text: "Sistema de distribuição inteligente que garante que a água filtrada e monitorada chegue a todos os pontos necessários de forma eficiente. Controle remoto via app permite gerenciar fluxos, detectar vazamentos e otimizar o consumo.",
     },
+   
   ];
 
   return (
     <section className="w-full min-h-screen text-white px-6 md:px-20 py-16 flex flex-col items-center">
       
-      {/* Título super rápido */}
+      {/* Título */}
       <motion.div 
         className="flex flex-col justify-center items-center pt-5 mb-16"
         initial={{ opacity: 0, filter: "blur(6px)", y: 15 }}
@@ -38,7 +43,7 @@ const WhoTouse = () => {
         </h1>
       </motion.div>
 
-      {/* Grid de cards ultra rápido */}
+      {/* Grid de cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-5xl">
         {cards.map((card, index) => (
           <motion.div
@@ -57,15 +62,19 @@ const WhoTouse = () => {
             transition={{ 
               duration: 0.4, 
               ease: "easeOut",
-              delay: index * 0.05 // Delay mínimo para sequência
+              delay: index * 0.05 
             }}
             viewport={{ once: false, amount: 0.1 }}
           >
-            <div className="">
+            <div>
               <h3 className="text-center pb-3 text-lg font-semibold">{card.title}</h3>
               <p className="text-sm text-justify text-gray-200 mt-2">{card.text}</p>
             </div>
-            <button className="mb-2 mt-2 w-full bg-white text-[#0D6DFF] px-5 py-2 rounded-full text-sm font-semibold hover:bg-gray-200 transition-colors self-start">
+
+            <button 
+              className="mb-2 mt-2 w-full bg-white text-[#0D6DFF] px-5 py-2 rounded-full text-sm font-semibold hover:bg-gray-200 transition-colors self-start"
+              onClick={() => navigate("/Sistema#Tanque")}
+            >
               Saber mais
             </button>
           </motion.div>

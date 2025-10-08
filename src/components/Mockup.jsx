@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import { useNavigate } from 'react-router-dom';
 
 const Mockup = () => {
+  
+  const navigate = useNavigate();
   const [isMobile, setIsMobile] = useState(false);
 
   // Detecta tamanho da tela
@@ -29,7 +32,7 @@ const Mockup = () => {
         </h1>
       </motion.div>
 
-      {/* {/* Texto */}
+      {/* Texto */}
      <motion.div 
   className="flex justify-center items-center md:mx-20 lg:mx-40"
   initial={{ opacity: 0, y: 15 }}
@@ -45,7 +48,6 @@ const Mockup = () => {
     Desenvolvemos um app onde você consiguira monitorar a sua economia.
   </p>
 </motion.div>
-
 
       {/* Mockups */}
       <div className="flex  justify-center items-center pt-12">
@@ -123,9 +125,12 @@ initial={{ opacity: 0, y: 15 }}
   style={{ filter: "blur(6px)" }}
   animate={{ filter: "blur(0px)" }}>
   <h2 className="text-azul-style font-zalando font-semibold">FAÇA O DOWNLOAD AGORA</h2>
-      <button className="items-center mb-2 mt-2 w-72 bg-azul-style text-white font-zalando px-5 py-2 rounded-full text-sm font-semibold hover:bg-blue-500 transition-colors ">
-              Saber mais
-            </button>
+<button 
+  className="items-center mb-2 mt-2 w-72 bg-azul-style text-white font-zalando px-5 py-2 rounded-full text-sm font-semibold hover:bg-blue-500 transition-colors"
+  onClick={() => navigate('/Sistema#motivation')}
+>
+  Saber mais
+</button>
 </motion.div>
     </section>
   );

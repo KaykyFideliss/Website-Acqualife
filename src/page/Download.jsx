@@ -1,14 +1,20 @@
 import React from 'react';
-import DownloadApp from '../components/DownloadApp';
+import HeroDownload from '../components/Download/HeroDownload';
+import DownloadApp from '../components/Download/DownloadApp';
+import Footer from '../components/Footer'
+
 // import HeroDownload from '../components/HeroDownload';
 
 const Download = () => {
   return (
-    <div>
+    <div className='overflow-x-hidden'>
      
 {/* <HeroDownload /> */}
-     <DownloadApp />
-
+    <HeroDownload />
+  
+    <DownloadApp /> 
+ 
+    <Footer />
     </div>
   );
 }
