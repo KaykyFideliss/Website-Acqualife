@@ -41,7 +41,7 @@ const DownloadApp = () => {
         <h2 className="text-azul-style font-zalando font-medium mb-2">Android</h2>
 
         <a
-          href="/download/Apk/"
+          href="/img/logo.png"
           download
           className="mt-4 w-72 bg-azul-style text-white font-zalando px-5 py-3 rounded-xl text-sm font-semibold hover:bg-blue-500 transition-colors text-center z-30"
         >
@@ -55,30 +55,30 @@ const DownloadApp = () => {
           <>
              {/* Esquerda */}
   <motion.img
-    src="/img/download/teste.png"
+    src="/img/download/half-phone-about.png"
     alt="Mockup Esquerda"
     className="w-auto sm:w-48 absolute left-[12%] bottom-0 opacity-90"
-    initial={{ opacity: 0, x: -80, y: 30 }}
+    initial={{ opacity: 0, x: 100, y: 30 }}
     whileInView={{ opacity: 1, x: 50, y: 40 }}
     transition={{ duration: 1 }}
   />
 
   {/* Centro */}
   <motion.img
-    src="/img/download/teste.png"
+    src="/img/download/half-phone.png"
     alt="Mockup Centro"
     className="w-auto sm:w-52 z-20 drop-shadow-2xl absolute bottom-0"
     initial={{ opacity: 0, y: 100 }}
-    whileInView={{ opacity: 1, y: 0 }}
+    whileInView={{ opacity: 1,   y: 0 }}
     transition={{ duration: 1 }}
   />
 
   {/* Direita */}
   <motion.img
-    src="/img/download/teste.png"
+    src="/img/download/half-phone-login.png"
     alt="Mockup Direita"
     className="w-auto sm:w-48 absolute right-[12%] bottom-0 opacity-90"
-    initial={{ opacity: 0, x: 10, y: 30 }}
+    initial={{ opacity: 0, x: -100, y: 30 }}
     whileInView={{ opacity: 1, x: -50, y: 40 }}
     transition={{ duration: 1 }}
   />
@@ -87,7 +87,7 @@ const DownloadApp = () => {
         ) : (
           <>
             <motion.img
-              src="/img/download/teste.png"
+              src="/img/download/half-phone-about.png"
               alt="Mockup Left"
               className="w-64 md:w-auto  opacity-90"
               initial={{ opacity: 0, x: -100 }}
@@ -95,7 +95,7 @@ const DownloadApp = () => {
               transition={{ duration: 1 }}
             />
             <motion.img
-              src="/img/download/teste.png"
+              src="/img/download/half-phone.png"
               alt="Mockup Center"
               className="w-64 md:w-auto z-10 drop-shadow-2xl"
               initial={{ opacity: 0, y: 100 }}
@@ -103,7 +103,7 @@ const DownloadApp = () => {
               transition={{ duration: 1 }}
             />
             <motion.img
-              src="/img/download/teste.png"
+              src="/img/download/half-phone-login.png"
               alt="Mockup Right"
               className="w-64 md:w-auto -ml-10 opacity-90"
               initial={{ opacity: 0, x: 100 }}
