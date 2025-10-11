@@ -10,7 +10,7 @@ import Mockup from "../components/Mockup";
 const Home = () => {
   return (
     <div className="overflow-x-hidden">
-      <Hero />
+      <Hero  />
       <Second />
       <WhatIsTheApp />
       <WhoTouse />
