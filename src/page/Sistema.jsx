@@ -6,6 +6,7 @@ import Components from '../components/Sistema/Components';
 import Motivation from '../components/Sistema/Motivation';
 import Footer from '../components/Footer';
 
+
 const Sistema = () => {
   const motivationRef = useRef(null);
   const tanqueRef = useRef(null);
@@ -30,6 +31,7 @@ const Sistema = () => {
       </div>
       
       <Components />
+
       
       <div ref={motivationRef}>
         <Motivation />

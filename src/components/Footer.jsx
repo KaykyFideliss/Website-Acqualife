@@ -3,7 +3,7 @@ import React from 'react'
 const Footer = () => {
   return (
     <footer className="bg-azul-style w-full">
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center px-10 py-6 text-white font-zalando">
+      <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center px-10 py-1 text-white font-zalando">
         
         {/* Logo */}
         <div className="flex justify-center md:justify-start">
@@ -17,6 +17,7 @@ const Footer = () => {
           
           <li className="cursor-pointer hover:text-gray-300 transition">Home</li>
           <li className="cursor-pointer hover:text-gray-300 transition">Download</li>
+          <li className="cursor-pointer hover:text-gray-300 transition">Sistema</li>
          
         </ul>
         </div>
