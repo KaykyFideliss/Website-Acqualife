@@ -15,8 +15,7 @@ const DownloadApp = () => {
   return (
     <section
       id="DownloadNow"
-      className="relative w-full min-h-screen text-white flex flex-col justify-center items-center bg-white overflow-hidden
-                 pb-40 md:pb-56" /* <- espaço reservado para os mockups invadirem */
+      className="relative w-full min-h-screen text-white flex flex-col justify-center items-center bg-white overflow-hidden pb-40 md:pb-56"
     >
       {/* Título */}
       <motion.div
@@ -28,7 +27,7 @@ const DownloadApp = () => {
         style={{ filter: "blur(6px)" }}
         animate={{ filter: "blur(0px)" }}
       >
-        <h1 className="text-xl md:text-5xl font-bold font-zalando text-[#0D6DFF] mb-6">
+        <h1 className="text-xl md:text-5xl font-bold font-zalando text-azul-style mb-6">
           FAÇA DOWNLOAD AGORA
         </h1>
       </motion.div>
@@ -41,11 +40,12 @@ const DownloadApp = () => {
         <h2 className="text-azul-style font-zalando font-medium mb-2">Android</h2>
 
         <a
-          href="/img/logo.png"
-          download
-          className="mt-4 w-72 bg-azul-style text-white font-zalando px-5 py-3 rounded-xl text-sm font-semibold hover:bg-blue-500 transition-colors text-center z-30"
+          // href=""
+          // download
+          className="mt-4 w-72 bg-gray-800 text-white  cursor-not-allowed font-zalando px-5 py-3 rounded-xl text-sm font-semibold hover:bg-gray-500 transition-colors text-center z-30"
         >
-          ACQUALIFE 1.0 (.apk)
+          EM BREVE
+          {/* ACQUALIFE 1.0 (.apk) */}
         </a>
       </div>
 
