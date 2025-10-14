@@ -33,7 +33,7 @@ const Motivation = () => {
   }
 
   return (
-    <section id='motivation' className="py-20 w-full h-screen flex items-center justify-center bg-white px-6">
+    <section className="py-20 w-full h-screen flex items-center justify-center bg-white px-6">
 
     <motion.div 
   className=" text-center text-gray-900 text-4xl md:text-7xl font-bold font-zalando leading-snug"
