@@ -14,7 +14,7 @@ const DownloadApp = () => {
 
   return (
     <section
-      id="DownloadNow"
+      
       className="relative w-full min-h-screen text-white flex flex-col justify-center items-center bg-white overflow-hidden pb-40 md:pb-56"
     >
       {/* Título */}
@@ -40,6 +40,7 @@ const DownloadApp = () => {
         <h2 className="text-azul-style font-zalando font-medium mb-2">Android</h2>
 
         <a
+         id="DownloadAppBtn"
           // href=""
           // download
           className="mt-4 w-72 bg-gray-800 text-white  cursor-not-allowed font-zalando px-5 py-3 rounded-xl text-sm font-semibold hover:bg-gray-500 transition-colors text-center z-30"
