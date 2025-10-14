@@ -5,7 +5,7 @@ import { FaArrowDown } from "react-icons/fa";
 
 const HeroDownload = () => {
   return (
-    <section id='home' className='h-screen flex items-center justify-center overflow-hidden'>
+   <section id='home' className='relative h-screen flex items-center justify-center overflow-hidden'>
       
 
 
@@ -78,7 +78,8 @@ const HeroDownload = () => {
         </motion.p>
       </motion.div>
 
-
+ {/* Fade na parte inferior */}
+  <div className="absolute bottom-0 left-0 w-full h-32 md:h-36 bg-gradient-to-t from-white/100 to-transparent pointer-events-none"></div>
 
     </section>
   )
