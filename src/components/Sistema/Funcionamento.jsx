@@ -18,7 +18,7 @@ const Funcionamento = () => {
       text3:"Mais do que uma simples etapa de limpeza, o Tanque 2 representa o coração do sistema Acqualife, onde a transformação realmente acontece. A água captada da chuva deixa de ser apenas um recurso coletado e passa a se tornar água tratada e reaproveitável, pronta para seguir para os próximos estágios do sistema e ser utilizada de maneira segura e ambientalmente responsável.",
     },
     {
-      title: "Monitoramento Contínuo de pH",
+      title: "TANQUE 3",
       text: "O Tanque 3 é o terceiro e último estágio do sistema Acqualife, responsável por garantir que a água tratada atinja o padrão ideal antes de ser utilizada. Após passar pelas etapas de captação e purificação, a água chega a este tanque, onde ocorre a análise e o controle do pH, etapa fundamental para assegurar que a água esteja dentro dos níveis adequados para o uso doméstico.",
       text2:"Com sensores de medição precisos, o Tanque 3 monitora constantemente a qualidade e o equilíbrio químico da água, ajustando o pH quando necessário. Esse processo garante não apenas a segurança e eficiência do sistema, mas também contribui para a preservação de tubulações e equipamentos que utilizam essa água.",
       text3:"Após a verificação e estabilização dos parâmetros, a água é distribuída para a residência, podendo ser utilizada em diversas atividades do dia a dia — como irrigação, limpeza, descargas sanitárias e outros usos não potáveis — de maneira prática e sustentável, simbolizando o encerramento do ciclo inteligente do Acqualife, onde tecnologia, inovação e consciência ambiental se unem para promover o uso responsável da água e reduzir o impacto ambiental nas comunidades.",
