@@ -51,29 +51,29 @@ const Cadastro = () => {
   };
 
   return (
- <div className="h-screen w-screen overflow-hidden flex flex-col md:flex-row items-center justify-center ml-10">
+    <div className="h-screen w-screen flex flex-col md:flex-row items-center justify-center">
 
-  {/* --- LADO ESQUERDO (imagem/bg/texto) --- */}
-  <div className="hidden md:flex w-1/2 h-[calc(100vh-120px)] mt-24 mb-16 relative bg-gradient-to-tr rounded-xl bg-azul-style items-center justify-between flex-col p-4">
+      {/* --- LADO ESQUERDO (card azul) --- */}
+      <div className="hidden md:flex md:w-1/2 m-14 h-[800px] bg-gradient-to-tr rounded-xl bg-azul-style items-center justify-center p-6 relative">
         <img
           src=""
           alt=""
-          className="absolute inset-0 w-full h-full object-cover opacity-20"
+          className="absolute inset-0 w-full h-full object-cover opacity-20 rounded-xl"
         />
-        <div className="relative z-10 text-center px-8">
+        <div className="relative z-10 text-center px-4">
           <h1 className="text-4xl font-bold text-white mb-4"></h1>
-          <p className="text-gray-700 text-lg"></p>
+          <p className="text-gray-100 text-lg"></p>
         </div>
       </div>
 
       {/* --- LADO DIREITO (formulário) --- */}
-      <div className="flex flex-col w-full md:w-1/2 items-center justify-center">
-        <img className="w-60 h-30" src="img/logo.png" alt="Logo" />
-        <h2 className="text-3xl -m-12 text-azul-style font-zalando font-semibold mb-6">Cadastro</h2>
-        <form className="w-full max-w-sm" onSubmit={handleSubmit}>
+      <div className="flex w-full md:w-1/2 items-center justify-center p-6">
+        <div className="w-full max-w-sm">
+          <img className="w-60 h-30 mx-auto mb-4" src="img/logo.png" alt="Logo" />
+          <h2 className="text-3xl text-azul-style font-zalando font-semibold mb-6 text-center">Cadastro</h2>
+          <form onSubmit={handleSubmit} className="space-y-6">
 
-          {/* NOME */}
-          <div className="mb-6">
+            {/* NOME */}
             <div className="relative">
               <input
                 required
@@ -84,18 +84,16 @@ const Cadastro = () => {
                 placeholder=" "
                 className="w-full border text-azul-style font-zalando border-gray-300 rounded-lg px-3 py-3 focus:outline-none focus:ring-2 focus:ring-azul-style peer"
               />
-              <label className="absolute left-3 top-1/2 transform -translate-y-1/3 text-gray-400 font-zalando text-sm transition-all duration-200 cursor-text
+              <label className="absolute left-3 top-1/2 -translate-y-1/3 text-gray-400 font-zalando text-sm transition-all duration-200 cursor-text
                 peer-focus:-top-2 peer-focus:bg-white peer-focus:px-1 peer-focus:text-azul-style peer-focus:text-xs
                 peer-[:not(:placeholder-shown)]:-top-2 peer-[:not(:placeholder-shown)]:bg-white peer-[:not(:placeholder-shown)]:px-1 peer-[:not(:placeholder-shown)]:text-azul-style peer-[:not(:placeholder-shown)]:text-xs"
               >
                 NOME COMPLETO
               </label>
-              <MdPerson className="absolute text-lg right-3 top-1/2 transform -translate-y-1/3 text-azul-style cursor-default" />
+              <MdPerson className="absolute text-lg right-3 top-1/2 -translate-y-1/3 text-azul-style cursor-default" />
             </div>
-          </div>
 
-          {/* EMAIL */}
-          <div className="mb-6">
+            {/* EMAIL */}
             <div className="relative">
               <input
                 required
@@ -106,18 +104,16 @@ const Cadastro = () => {
                 placeholder=" "
                 className="w-full border text-azul-style font-zalando border-gray-300 rounded-lg px-3 py-3 focus:outline-none focus:ring-2 focus:ring-azul-style peer"
               />
-              <label className="absolute left-3 top-1/2 transform -translate-y-1/3 text-gray-400 font-zalando text-sm transition-all duration-200 cursor-text
+              <label className="absolute left-3 top-1/2 -translate-y-1/3 text-gray-400 font-zalando text-sm transition-all duration-200 cursor-text
                 peer-focus:-top-2 peer-focus:bg-white peer-focus:px-1 peer-focus:text-azul-style peer-focus:text-xs
                 peer-[:not(:placeholder-shown)]:-top-2 peer-[:not(:placeholder-shown)]:bg-white peer-[:not(:placeholder-shown)]:px-1 peer-[:not(:placeholder-shown)]:text-azul-style peer-[:not(:placeholder-shown)]:text-xs"
               >
                 EMAIL
               </label>
-              <MdEmail className="absolute text-lg right-3 top-1/2 transform -translate-y-1/3 text-azul-style cursor-default" />
+              <MdEmail className="absolute text-lg right-3 top-1/2 -translate-y-1/3 text-azul-style cursor-default" />
             </div>
-          </div>
 
-          {/* TELEFONE */}
-          <div className="mb-6">
+            {/* TELEFONE */}
             <div className="relative">
               <input
                 required
@@ -129,18 +125,16 @@ const Cadastro = () => {
                 maxLength={15}
                 className="w-full border text-azul-style font-zalando border-gray-300 rounded-lg px-3 py-3 focus:outline-none focus:ring-2 focus:ring-azul-style peer"
               />
-              <label className="absolute left-3 top-1/2 transform -translate-y-1/3 text-gray-400 font-zalando text-sm transition-all duration-200 cursor-text
+              <label className="absolute left-3 top-1/2 -translate-y-1/3 text-gray-400 font-zalando text-sm transition-all duration-200 cursor-text
                 peer-focus:-top-2 peer-focus:bg-white peer-focus:px-1 peer-focus:text-azul-style peer-focus:text-xs
                 peer-[:not(:placeholder-shown)]:-top-2 peer-[:not(:placeholder-shown)]:bg-white peer-[:not(:placeholder-shown)]:px-1 peer-[:not(:placeholder-shown)]:text-azul-style peer-[:not(:placeholder-shown)]:text-xs"
               >
                 TELEFONE
               </label>
-              <MdPhone className="absolute text-lg right-3 top-1/2 transform -translate-y-1/3 text-azul-style cursor-default" />
+              <MdPhone className="absolute text-lg right-3 top-1/2 -translate-y-1/3 text-azul-style cursor-default" />
             </div>
-          </div>
 
-          {/* SENHA */}
-          <div className="mb-6">
+            {/* SENHA */}
             <div className="relative">
               <input
                 name="password"
@@ -150,7 +144,7 @@ const Cadastro = () => {
                 placeholder=" "
                 className="w-full border font-zalando text-azul-style border-gray-300 rounded-lg px-3 py-3 focus:outline-none focus:ring-2 focus:ring-azul-style peer"
               />
-              <label className="absolute left-3 top-1/2 transform -translate-y-1/3 text-gray-400 font-zalando text-sm transition-all duration-200 cursor-text
+              <label className="absolute left-3 top-1/2 -translate-y-1/3 text-gray-400 font-zalando text-sm transition-all duration-200 cursor-text
                 peer-focus:-top-2 peer-focus:bg-white peer-focus:px-1 peer-focus:text-azul-style peer-focus:text-xs
                 peer-[:not(:placeholder-shown)]:-top-2 peer-[:not(:placeholder-shown)]:bg-white peer-[:not(:placeholder-shown)]:px-1 peer-[:not(:placeholder-shown)]:text-azul-style peer-[:not(:placeholder-shown)]:text-xs"
               >
@@ -158,20 +152,18 @@ const Cadastro = () => {
               </label>
               {showPassword ? (
                 <FaEyeSlash
-                  className="absolute text-lg right-3 top-1/2 transform -translate-y-1/3 text-azul-style cursor-pointer"
+                  className="absolute text-lg right-3 top-1/2 -translate-y-1/3 text-azul-style cursor-pointer"
                   onClick={togglePasswordVisibility}
                 />
               ) : (
                 <FaEye
-                  className="absolute text-lg right-3 top-1/2 transform -translate-y-1/3 text-azul-style cursor-pointer"
+                  className="absolute text-lg right-3 top-1/2 -translate-y-1/3 text-azul-style cursor-pointer"
                   onClick={togglePasswordVisibility}
                 />
               )}
             </div>
-          </div>
 
-          {/* CONFIRMAR SENHA */}
-          <div className="mb-6">
+            {/* CONFIRMAR SENHA */}
             <div className="relative">
               <input
                 name="confirmPassword"
@@ -181,7 +173,7 @@ const Cadastro = () => {
                 placeholder=" "
                 className="w-full border font-zalando text-azul-style border-gray-300 rounded-lg px-3 py-3 focus:outline-none focus:ring-2 focus:ring-azul-style peer"
               />
-              <label className="absolute left-3 top-1/2 transform -translate-y-1/3 text-gray-400 font-zalando text-sm transition-all duration-200 cursor-text
+              <label className="absolute left-3 top-1/2 -translate-y-1/3 text-gray-400 font-zalando text-sm transition-all duration-200 cursor-text
                 peer-focus:-top-2 peer-focus:bg-white peer-focus:px-1 peer-focus:text-azul-style peer-focus:text-xs
                 peer-[:not(:placeholder-shown)]:-top-2 peer-[:not(:placeholder-shown)]:bg-white peer-[:not(:placeholder-shown)]:px-1 peer-[:not(:placeholder-shown)]:text-azul-style peer-[:not(:placeholder-shown)]:text-xs"
               >
@@ -189,32 +181,32 @@ const Cadastro = () => {
               </label>
               {showConfirmPassword ? (
                 <FaEyeSlash
-                  className="absolute text-lg right-3 top-1/2 transform -translate-y-1/3 text-azul-style cursor-pointer"
+                  className="absolute text-lg right-3 top-1/2 -translate-y-1/3 text-azul-style cursor-pointer"
                   onClick={toggleConfirmPasswordVisibility}
                 />
               ) : (
                 <FaEye
-                  className="absolute text-lg right-3 top-1/2 transform -translate-y-1/3 text-azul-style cursor-pointer"
+                  className="absolute text-lg right-3 top-1/2 -translate-y-1/3 text-azul-style cursor-pointer"
                   onClick={toggleConfirmPasswordVisibility}
                 />
               )}
             </div>
-          </div>
 
-          <button
-            type="submit"
-            className="w-full bg-azul-style hover:bg-blue-600 font-zalando text-white py-2 rounded-lg transition-colors mb-4"
-          >
-            Cadastrar
-          </button>
+            <button
+              type="submit"
+              className="w-full bg-azul-style hover:bg-blue-600 font-zalando text-white py-2 rounded-lg transition-colors"
+            >
+              Cadastrar
+            </button>
 
-          <div className="text-center font-zalando text-gray-600 text-sm">
-            Já tem conta?{" "}
-            <a href="/login" className="text-azul-style font-medium hover:underline">
-              Fazer Login
-            </a>
-          </div>
-        </form>
+            <div className="text-center font-zalando text-gray-600 text-sm mt-2">
+              Já tem conta?{" "}
+              <a href="/login" className="text-azul-style font-medium hover:underline">
+                Fazer Login
+              </a>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   );
