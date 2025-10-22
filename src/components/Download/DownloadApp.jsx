@@ -43,7 +43,7 @@ const DownloadApp = () => {
          id="DownloadAppBtn"
           // href=""
           // download
-          className="mt-4 w-72 bg-gray-800 text-white  cursor-not-allowed font-zalando px-5 py-3 rounded-xl text-sm font-semibold hover:bg-gray-500 transition-colors text-center z-30"
+          className="mt-4 m-60 w-72 bg-gray-800 text-white  cursor-not-allowed font-zalando px-5 py-3 rounded-xl text-sm font-semibold hover:bg-gray-500 transition-colors text-center z-30"
         >
           EM BREVE
           {/* ACQUALIFE 1.0 (.apk) */}
