@@ -9,6 +9,8 @@ import Download from "./page/Download";
 import Home from "./page/Home";
 import Sobre from "./page/Sobre";
 import Sistema from "./page/Sistema";
+import Login from "./page/Login";
+import Cadastro from "./page/Cadastro";
 
 function App() {
   return (
@@ -27,6 +29,13 @@ function App() {
 
         {/* Rota sistema */}
         <Route path="/sistema" element={<Sistema />} />
+      
+        {/* Rota Login  */}
+        <Route path ="/login" element={<Login />} />
+
+        {/* Rota Cadastro */}
+        <Route path="/cadastro" element={<Cadastro />} />
+      
       </Routes>
     </>
   );
