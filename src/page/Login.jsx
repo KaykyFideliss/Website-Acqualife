@@ -3,11 +3,46 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 
 const Login = () => {
+
+
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const togglePasswordVisibility = () => setShowPassword(!showPassword);
+
+
+const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  try {
+    const response = await fetch("http://localhost/site-acqualife/Api/login.php", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: email,
+        senha: password,
+      }),
+    });
+
+    const data = await response.json();
+
+    if (data.success) {
+      alert("Login realizado com sucesso!");
+      // Salva os dados do usuário se necessário
+      localStorage.setItem("user", JSON.stringify(data.user));
+      // redireciona para Home
+      window.location.href = "/";
+    } else {
+      alert(data.message || "Erro no login");
+    }
+  } catch (error) {
+    console.error("Erro:", error);
+    alert("Falha na comunicação com o servidor");
+  }
+};
 
   return (
     <div className="h-screen w-screen flex flex-col md:flex-row items-center justify-center">
@@ -15,7 +50,7 @@ const Login = () => {
       {/* --- LADO ESQUERDO (card azul) --- */}
       <div className="hidden md:flex md:w-1/2 ml-14 h-[800px] bg-gradient-to-tr rounded-xl bg-azul-style items-center justify-center p-6 relative">
         <img
-          src=""
+          src="null"
           alt=""
           className="absolute inset-0 w-full h-full object-cover opacity-20 rounded-xl"
         />
@@ -31,7 +66,7 @@ const Login = () => {
           <img className="w-60 h-30 mx-auto mb-4" src="img/logo.png" alt="Logo" />
           <h2 className="text-3xl text-azul-style font-zalando font-semibold mb-6 text-center">Login</h2>
           
-          <form className="space-y-6">
+          <form className="space-y-6" onSubmit={handleSubmit}>
 
             {/* EMAIL */}
             <div className="relative">

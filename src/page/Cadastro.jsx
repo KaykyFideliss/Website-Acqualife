@@ -10,7 +10,7 @@ const Cadastro = () => {
     email: "",
     telefone: "",
     password: "",
-    confirmPassword: ""
+    confirmPassword: "",
   });
 
   const togglePasswordVisibility = () => setShowPassword(!showPassword);
@@ -35,20 +35,60 @@ const Cadastro = () => {
         }
       }
 
-      setFormData(prev => ({ ...prev, [name]: formattedValue }));
+      setFormData((prev) => ({ ...prev, [name]: formattedValue }));
     } else {
-      setFormData(prev => ({ ...prev, [name]: value }));
+      setFormData((prev) => ({ ...prev, [name]: value }));
     }
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (formData.password !== formData.confirmPassword) {
-      alert("As senhas não coincidem!");
+const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  if (formData.password !== formData.confirmPassword) {
+    alert("As senhas não coincidem!");
+    return;
+  }
+
+  try {
+   // Mude para:
+const response = await fetch("http://localhost/site-acqualife/Api/cadastro.php",  {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        nome: formData.nome,
+        email: formData.email,
+        telefone: formData.telefone,
+        password: formData.password,
+      }),
+    });
+
+    // DEBUG: Veja o que está voltando antes de tentar parsear como JSON
+    const rawResponse = await response.text();
+    console.log("Resposta bruta:", rawResponse);
+
+    // Tenta parsear como JSON
+    let data;
+    try {
+      data = JSON.parse(rawResponse);
+    } catch (parseError) {
+      console.error("Erro ao parsear JSON:", parseError);
+      alert("Erro no servidor. Verifique o console.");
       return;
     }
-    console.log("Dados do cadastro:", formData);
-  };
+
+    if (data.success) {
+      alert(data.message);
+      window.location.href = "/login";
+    } else {
+      alert(data.message || "Erro ao cadastrar usuário.");
+    }
+  } catch (error) {
+    console.error("Erro:", error);
+    alert("Falha na comunicação com o servidor.");
+  }
+};
 
   return (
     <div className="h-screen w-screen flex flex-col md:flex-row items-center justify-center">
@@ -56,7 +96,7 @@ const Cadastro = () => {
       {/* --- LADO ESQUERDO (card azul) --- */}
       <div className="hidden md:flex md:w-1/2 m-14 h-[800px] bg-gradient-to-tr rounded-xl bg-azul-style items-center justify-center p-6 relative">
         <img
-          src=""
+          src="null"
           alt=""
           className="absolute inset-0 w-full h-full object-cover opacity-20 rounded-xl"
         />
