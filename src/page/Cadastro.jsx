@@ -94,7 +94,7 @@ const response = await fetch("http://localhost/site-acqualife/Api/cadastro.php",
     <div className="h-screen w-screen flex flex-col md:flex-row items-center justify-center">
 
       {/* --- LADO ESQUERDO (card azul) --- */}
-      <div className="hidden md:flex md:w-1/2 m-14 h-[800px] bg-gradient-to-tr rounded-xl bg-azul-style items-center justify-center p-6 relative">
+   <div className="mt-44 hidden md:flex md:w-1/2 ml-14 h-[800px] md:h-[700px] bg-gradient-to-tr rounded-xl bg-azul-style items-center justify-center p-6 relative">
         <img
           src="null"
           alt=""
@@ -107,9 +107,9 @@ const response = await fetch("http://localhost/site-acqualife/Api/cadastro.php",
       </div>
 
       {/* --- LADO DIREITO (formulário) --- */}
-      <div className="flex w-full md:w-1/2 items-center justify-center p-6">
+      <div className="flex w-full mt-44 md:w-1/2 items-center justify-center p-6">
         <div className="w-full max-w-sm">
-          <img className="w-60 h-30 mx-auto mb-4" src="img/logo.png" alt="Logo" />
+          <img className="w-60 h-30 mx-auto " src="img/logo.png" alt="Logo" />
           <h2 className="text-3xl text-azul-style font-zalando font-semibold mb-6 text-center">Cadastro</h2>
           <form onSubmit={handleSubmit} className="space-y-6">
 

@@ -5,7 +5,7 @@ import WhatIsTheApp from "../components/WhatIsTheApp";
 import WhoTouse from "../components/WhoTouse";
 import Footer from "../components/Footer";
 import Mockup from "../components/Mockup";
-
+import AcessLogin from "../components/AcessLogin"
 
 const Home = () => {
   return (
@@ -15,6 +15,7 @@ const Home = () => {
       <WhatIsTheApp />
       <WhoTouse />
       <Mockup />
+      <AcessLogin />
       <Footer />
 
     </div>

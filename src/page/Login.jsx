@@ -48,7 +48,7 @@ const handleSubmit = async (e) => {
     <div className="h-screen w-screen flex flex-col md:flex-row items-center justify-center">
 
       {/* --- LADO ESQUERDO (card azul) --- */}
-      <div className="hidden md:flex md:w-1/2 ml-14 h-[800px] bg-gradient-to-tr rounded-xl bg-azul-style items-center justify-center p-6 relative">
+      <div className="hidden md:flex md:w-1/2 ml-14 h-[800px] md:h-[500px] bg-gradient-to-tr rounded-xl bg-azul-style items-center justify-center p-6 relative">
         <img
           src="null"
           alt=""

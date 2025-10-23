@@ -82,7 +82,7 @@ const WhatIsTheApp = () => {
         >
           <img
             className="max-w-full h-auto rounded-lg"
-            src="/img/home/mockeup-acqualife.png"
+            src="img/home/Inicio.png"
             alt="Preview"
           />
         </motion.div>
@@ -143,7 +143,7 @@ const WhatIsTheApp = () => {
           >
             <img
               className="max-w-full h-auto rounded-lg"
-              src="/img/home/mockeup-acqualife.png"
+              src="/img/home/porqueCriamos.png"
               alt="Preview"
             />
           </motion.div>
