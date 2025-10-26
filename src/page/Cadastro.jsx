@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { MdEmail, MdPhone, MdPerson } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
 
 const Cadastro = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -12,6 +13,7 @@ const Cadastro = () => {
     password: "",
     confirmPassword: "",
   });
+  const navigate = useNavigate();
 
   const togglePasswordVisibility = () => setShowPassword(!showPassword);
   const toggleConfirmPasswordVisibility = () => setShowConfirmPassword(!showConfirmPassword);
@@ -34,85 +36,62 @@ const Cadastro = () => {
           formattedValue = `(${numericValue.slice(0, 2)}) ${numericValue.slice(2, 7)}-${numericValue.slice(7, 11)}`;
         }
       }
-
       setFormData((prev) => ({ ...prev, [name]: formattedValue }));
     } else {
       setFormData((prev) => ({ ...prev, [name]: value }));
     }
   };
 
-const handleSubmit = async (e) => {
-  e.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-  if (formData.password !== formData.confirmPassword) {
-    alert("As senhas não coincidem!");
-    return;
-  }
-
-  try {
-   // Mude para:
-const response = await fetch("http://localhost/site-acqualife/Api/cadastro.php",  {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        nome: formData.nome,
-        email: formData.email,
-        telefone: formData.telefone,
-        password: formData.password,
-      }),
-    });
-
-    // DEBUG: Veja o que está voltando antes de tentar parsear como JSON
-    const rawResponse = await response.text();
-    console.log("Resposta bruta:", rawResponse);
-
-    // Tenta parsear como JSON
-    let data;
-    try {
-      data = JSON.parse(rawResponse);
-    } catch (parseError) {
-      console.error("Erro ao parsear JSON:", parseError);
-      alert("Erro no servidor. Verifique o console.");
+    if (formData.password !== formData.confirmPassword) {
+      alert("As senhas não coincidem!");
       return;
     }
 
-    if (data.success) {
-      alert(data.message);
-      window.location.href = "/login";
-    } else {
-      alert(data.message || "Erro ao cadastrar usuário.");
+    try {
+      const response = await fetch("http://localhost/site-acqualife/Acqualife-web/Api/cadastro.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          nome: formData.nome,
+          email: formData.email,
+          telefone: formData.telefone,
+          password: formData.password,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        alert("Cadastro realizado com sucesso!");
+        localStorage.setItem("user", JSON.stringify(data.user));
+        navigate("/MeuUno");
+      } else {
+        alert(data.message || "Erro ao cadastrar usuário.");
+      }
+    } catch (error) {
+      console.error("Erro:", error);
+      alert("Falha na comunicação com o servidor.");
     }
-  } catch (error) {
-    console.error("Erro:", error);
-    alert("Falha na comunicação com o servidor.");
-  }
-};
+  };
 
   return (
     <div className="h-screen w-screen flex flex-col md:flex-row items-center justify-center">
-
-      {/* --- LADO ESQUERDO (card azul) --- */}
-   <div className="mt-44 hidden md:flex md:w-1/2 ml-14 h-[800px] md:h-[700px] bg-gradient-to-tr rounded-xl bg-azul-style items-center justify-center p-6 relative">
-        <img
-          src="null"
-          alt=""
-          className="absolute inset-0 w-full h-full object-cover opacity-20 rounded-xl"
-        />
-        <div className="relative z-10 text-center px-4">
-          <h1 className="text-4xl font-bold text-white mb-4"></h1>
-          <p className="text-gray-100 text-lg"></p>
-        </div>
+      {/* --- CARD ESQUERDO --- */}
+      <div className="mt-44 hidden md:flex md:w-1/2 ml-14 h-[800px] md:h-[700px] bg-gradient-to-tr rounded-xl bg-azul-style items-center justify-center p-6 relative">
+        <img src="null" alt="" className="absolute inset-0 w-full h-full object-cover opacity-20 rounded-xl" />
+        <div className="relative z-10 text-center px-4"></div>
       </div>
 
-      {/* --- LADO DIREITO (formulário) --- */}
+      {/* --- FORM --- */}
       <div className="flex w-full mt-44 md:w-1/2 items-center justify-center p-6">
         <div className="w-full max-w-sm">
           <img className="w-60 h-30 mx-auto " src="img/logo.png" alt="Logo" />
           <h2 className="text-3xl text-azul-style font-zalando font-semibold mb-6 text-center">Cadastro</h2>
-          <form onSubmit={handleSubmit} className="space-y-6">
 
+          <form onSubmit={handleSubmit} className="space-y-6">
             {/* NOME */}
             <div className="relative">
               <input
@@ -124,10 +103,7 @@ const response = await fetch("http://localhost/site-acqualife/Api/cadastro.php",
                 placeholder=" "
                 className="w-full border text-azul-style font-zalando border-gray-300 rounded-lg px-3 py-3 focus:outline-none focus:ring-2 focus:ring-azul-style peer"
               />
-              <label className="absolute left-3 top-1/2 -translate-y-1/3 text-gray-400 font-zalando text-sm transition-all duration-200 cursor-text
-                peer-focus:-top-2 peer-focus:bg-white peer-focus:px-1 peer-focus:text-azul-style peer-focus:text-xs
-                peer-[:not(:placeholder-shown)]:-top-2 peer-[:not(:placeholder-shown)]:bg-white peer-[:not(:placeholder-shown)]:px-1 peer-[:not(:placeholder-shown)]:text-azul-style peer-[:not(:placeholder-shown)]:text-xs"
-              >
+              <label className="absolute left-3 top-1/2 -translate-y-1/3 text-gray-400 text-sm transition-all duration-200 cursor-text peer-focus:-top-2 peer-focus:bg-white peer-focus:px-1 peer-focus:text-azul-style peer-focus:text-xs peer-[:not(:placeholder-shown)]:-top-2 peer-[:not(:placeholder-shown)]:bg-white peer-[:not(:placeholder-shown)]:px-1 peer-[:not(:placeholder-shown)]:text-azul-style peer-[:not(:placeholder-shown)]:text-xs">
                 NOME COMPLETO
               </label>
               <MdPerson className="absolute text-lg right-3 top-1/2 -translate-y-1/3 text-azul-style cursor-default" />
@@ -144,10 +120,7 @@ const response = await fetch("http://localhost/site-acqualife/Api/cadastro.php",
                 placeholder=" "
                 className="w-full border text-azul-style font-zalando border-gray-300 rounded-lg px-3 py-3 focus:outline-none focus:ring-2 focus:ring-azul-style peer"
               />
-              <label className="absolute left-3 top-1/2 -translate-y-1/3 text-gray-400 font-zalando text-sm transition-all duration-200 cursor-text
-                peer-focus:-top-2 peer-focus:bg-white peer-focus:px-1 peer-focus:text-azul-style peer-focus:text-xs
-                peer-[:not(:placeholder-shown)]:-top-2 peer-[:not(:placeholder-shown)]:bg-white peer-[:not(:placeholder-shown)]:px-1 peer-[:not(:placeholder-shown)]:text-azul-style peer-[:not(:placeholder-shown)]:text-xs"
-              >
+              <label className="absolute left-3 top-1/2 -translate-y-1/3 text-gray-400 text-sm transition-all duration-200 cursor-text peer-focus:-top-2 peer-focus:bg-white peer-focus:px-1 peer-focus:text-azul-style peer-focus:text-xs peer-[:not(:placeholder-shown)]:-top-2 peer-[:not(:placeholder-shown)]:bg-white peer-[:not(:placeholder-shown)]:px-1 peer-[:not(:placeholder-shown)]:text-azul-style peer-[:not(:placeholder-shown)]:text-xs">
                 EMAIL
               </label>
               <MdEmail className="absolute text-lg right-3 top-1/2 -translate-y-1/3 text-azul-style cursor-default" />
@@ -165,10 +138,7 @@ const response = await fetch("http://localhost/site-acqualife/Api/cadastro.php",
                 maxLength={15}
                 className="w-full border text-azul-style font-zalando border-gray-300 rounded-lg px-3 py-3 focus:outline-none focus:ring-2 focus:ring-azul-style peer"
               />
-              <label className="absolute left-3 top-1/2 -translate-y-1/3 text-gray-400 font-zalando text-sm transition-all duration-200 cursor-text
-                peer-focus:-top-2 peer-focus:bg-white peer-focus:px-1 peer-focus:text-azul-style peer-focus:text-xs
-                peer-[:not(:placeholder-shown)]:-top-2 peer-[:not(:placeholder-shown)]:bg-white peer-[:not(:placeholder-shown)]:px-1 peer-[:not(:placeholder-shown)]:text-azul-style peer-[:not(:placeholder-shown)]:text-xs"
-              >
+              <label className="absolute left-3 top-1/2 -translate-y-1/3 text-gray-400 text-sm transition-all duration-200 cursor-text peer-focus:-top-2 peer-focus:bg-white peer-focus:px-1 peer-focus:text-azul-style peer-focus:text-xs peer-[:not(:placeholder-shown)]:-top-2 peer-[:not(:placeholder-shown)]:bg-white peer-[:not(:placeholder-shown)]:px-1 peer-[:not(:placeholder-shown)]:text-azul-style peer-[:not(:placeholder-shown)]:text-xs">
                 TELEFONE
               </label>
               <MdPhone className="absolute text-lg right-3 top-1/2 -translate-y-1/3 text-azul-style cursor-default" />
@@ -184,22 +154,13 @@ const response = await fetch("http://localhost/site-acqualife/Api/cadastro.php",
                 placeholder=" "
                 className="w-full border font-zalando text-azul-style border-gray-300 rounded-lg px-3 py-3 focus:outline-none focus:ring-2 focus:ring-azul-style peer"
               />
-              <label className="absolute left-3 top-1/2 -translate-y-1/3 text-gray-400 font-zalando text-sm transition-all duration-200 cursor-text
-                peer-focus:-top-2 peer-focus:bg-white peer-focus:px-1 peer-focus:text-azul-style peer-focus:text-xs
-                peer-[:not(:placeholder-shown)]:-top-2 peer-[:not(:placeholder-shown)]:bg-white peer-[:not(:placeholder-shown)]:px-1 peer-[:not(:placeholder-shown)]:text-azul-style peer-[:not(:placeholder-shown)]:text-xs"
-              >
+              <label className="absolute left-3 top-1/2 -translate-y-1/3 text-gray-400 text-sm transition-all duration-200 cursor-text peer-focus:-top-2 peer-focus:bg-white peer-focus:px-1 peer-focus:text-azul-style peer-focus:text-xs peer-[:not(:placeholder-shown)]:-top-2 peer-[:not(:placeholder-shown)]:bg-white peer-[:not(:placeholder-shown)]:px-1 peer-[:not(:placeholder-shown)]:text-azul-style peer-[:not(:placeholder-shown)]:text-xs">
                 SENHA
               </label>
               {showPassword ? (
-                <FaEyeSlash
-                  className="absolute text-lg right-3 top-1/2 -translate-y-1/3 text-azul-style cursor-pointer"
-                  onClick={togglePasswordVisibility}
-                />
+                <FaEyeSlash className="absolute text-lg right-3 top-1/2 -translate-y-1/3 text-azul-style cursor-pointer" onClick={togglePasswordVisibility} />
               ) : (
-                <FaEye
-                  className="absolute text-lg right-3 top-1/2 -translate-y-1/3 text-azul-style cursor-pointer"
-                  onClick={togglePasswordVisibility}
-                />
+                <FaEye className="absolute text-lg right-3 top-1/2 -translate-y-1/3 text-azul-style cursor-pointer" onClick={togglePasswordVisibility} />
               )}
             </div>
 
@@ -213,29 +174,17 @@ const response = await fetch("http://localhost/site-acqualife/Api/cadastro.php",
                 placeholder=" "
                 className="w-full border font-zalando text-azul-style border-gray-300 rounded-lg px-3 py-3 focus:outline-none focus:ring-2 focus:ring-azul-style peer"
               />
-              <label className="absolute left-3 top-1/2 -translate-y-1/3 text-gray-400 font-zalando text-sm transition-all duration-200 cursor-text
-                peer-focus:-top-2 peer-focus:bg-white peer-focus:px-1 peer-focus:text-azul-style peer-focus:text-xs
-                peer-[:not(:placeholder-shown)]:-top-2 peer-[:not(:placeholder-shown)]:bg-white peer-[:not(:placeholder-shown)]:px-1 peer-[:not(:placeholder-shown)]:text-azul-style peer-[:not(:placeholder-shown)]:text-xs"
-              >
+              <label className="absolute left-3 top-1/2 -translate-y-1/3 text-gray-400 text-sm transition-all duration-200 cursor-text peer-focus:-top-2 peer-focus:bg-white peer-focus:px-1 peer-focus:text-azul-style peer-focus:text-xs peer-[:not(:placeholder-shown)]:-top-2 peer-[:not(:placeholder-shown)]:bg-white peer-[:not(:placeholder-shown)]:px-1 peer-[:not(:placeholder-shown)]:text-azul-style peer-[:not(:placeholder-shown)]:text-xs">
                 CONFIRMAR SENHA
               </label>
               {showConfirmPassword ? (
-                <FaEyeSlash
-                  className="absolute text-lg right-3 top-1/2 -translate-y-1/3 text-azul-style cursor-pointer"
-                  onClick={toggleConfirmPasswordVisibility}
-                />
+                <FaEyeSlash className="absolute text-lg right-3 top-1/2 -translate-y-1/3 text-azul-style cursor-pointer" onClick={toggleConfirmPasswordVisibility} />
               ) : (
-                <FaEye
-                  className="absolute text-lg right-3 top-1/2 -translate-y-1/3 text-azul-style cursor-pointer"
-                  onClick={toggleConfirmPasswordVisibility}
-                />
+                <FaEye className="absolute text-lg right-3 top-1/2 -translate-y-1/3 text-azul-style cursor-pointer" onClick={toggleConfirmPasswordVisibility} />
               )}
             </div>
 
-            <button
-              type="submit"
-              className="w-full bg-azul-style hover:bg-blue-600 font-zalando text-white py-2 rounded-lg transition-colors"
-            >
+            <button type="submit" className="w-full bg-azul-style hover:bg-blue-600 font-zalando text-white py-2 rounded-lg transition-colors">
               Cadastrar
             </button>
 

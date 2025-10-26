@@ -11,6 +11,7 @@ import Sobre from "./page/Sobre";
 import Sistema from "./page/Sistema";
 import Login from "./page/Login";
 import Cadastro from "./page/Cadastro";
+import MeuUno from "./page/MeuUno";
 
 function App() {
   return (
@@ -35,6 +36,9 @@ function App() {
 
         {/* Rota Cadastro */}
         <Route path="/cadastro" element={<Cadastro />} />
+
+        {/* Rota MeuUno */}
+        <Route path="/MeuUno" element={<MeuUno />} />
       
       </Routes>
     </>
