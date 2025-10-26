@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 23/10/2025 às 04:12
+-- Tempo de geração: 26/10/2025 às 05:28
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -29,17 +29,21 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `arduino` (
   `id` int(11) NOT NULL,
-  `nivel` int(11) NOT NULL,
-  `capacidade` int(11) NOT NULL,
-  `data_atualizacao` timestamp NOT NULL DEFAULT current_timestamp()
+  `mac_address` varchar(17) NOT NULL,
+  `ph` decimal(3,1) DEFAULT 0.0,
+  `volume` int(11) DEFAULT 0,
+  `volume2` int(11) DEFAULT 0,
+  `id_user` int(11) DEFAULT NULL,
+  `data_atualizacao` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Despejando dados para a tabela `arduino`
 --
 
-INSERT INTO `arduino` (`id`, `nivel`, `capacidade`, `data_atualizacao`) VALUES
-(1, 2000, 5000, '0000-00-00 00:00:00');
+INSERT INTO `arduino` (`id`, `mac_address`, `ph`, `volume`, `volume2`, `id_user`, `data_atualizacao`) VALUES
+(1, 'MAC_USER_25', 7.2, 750, 500, 25, '2025-10-26 03:19:05'),
+(2, 'MAC_USER_26', 6.0, 200, 800, 26, '2025-10-26 04:23:48');
 
 -- --------------------------------------------------------
 
@@ -63,8 +67,8 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`id_user`, `nome`, `telefone`, `email`, `senha`, `data_criacao`, `data_atualizacao`, `ativo`) VALUES
-(21, 'Kayky Fidelis', '(31) 99515-6342', 'kayky.fid@gmail.com', '$2y$10$DTNyKQhfWoJfLGob0ZraROfQdgVCE37o.wNdVJ9tXYj8SOhA9quJi', '2025-10-23 00:39:10', '2025-10-23 00:39:10', 1),
-(22, 'Fagundes', '(77) 77777-7777', 'Fagundes@gmail.com', '$2y$10$/FTzvCgvHmJkPu9TBmq18ud9VI4HjgA830Qp9DTvQBkgW6VkgP1jO', '2025-10-23 01:26:28', '2025-10-23 01:26:28', 1);
+(25, 'admin', '(31) 99515-6342', 'admin@gmail.com', '$2y$10$5Ko4PcumEDF7UoSkOhfP5uQMJlrYvifvQJxiocFu.b.LFZ.dLAlVS', '2025-10-26 00:58:42', '2025-10-26 00:58:42', 1),
+(26, 'pele', '(31) 99515-6342', 'pele@gmail.com', '$2y$10$btHrzmsxg7Kd30oxk6U7D.Oky4VoV78FU58wIgQ6bmgL/5ZSZLCfO', '2025-10-26 02:25:14', '2025-10-26 02:25:14', 1);
 
 --
 -- Índices para tabelas despejadas
@@ -74,7 +78,9 @@ INSERT INTO `usuario` (`id_user`, `nome`, `telefone`, `email`, `senha`, `data_cr
 -- Índices de tabela `arduino`
 --
 ALTER TABLE `arduino`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `mac_address` (`mac_address`),
+  ADD KEY `id_user` (`id_user`);
 
 --
 -- Índices de tabela `usuario`
@@ -90,13 +96,23 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de tabela `arduino`
 --
 ALTER TABLE `arduino`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de tabela `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+
+--
+-- Restrições para tabelas despejadas
+--
+
+--
+-- Restrições para tabelas `arduino`
+--
+ALTER TABLE `arduino`
+  ADD CONSTRAINT `arduino_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `usuario` (`id_user`) ON DELETE SET NULL;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
