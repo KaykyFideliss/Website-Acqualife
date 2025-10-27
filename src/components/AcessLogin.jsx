@@ -37,8 +37,8 @@ const AcessLogin = () => {
 
                 {/* IMAGENS */}
                 <div className='flex flex-col gap-8'>
-                    <img src="/img/home/porqueCriamos.png" alt="" className='h-64 w-auto max-w-full object-cover rounded-lg' />
-                    <img src="/img/home/porqueCriamos.png" alt="" className='h-64 w-auto max-w-full object-cover  rounded-lg' />
+                    <img src="/img/home/banner1.png" alt="" className='h-64 w-auto max-w-full object-cover rounded-lg' />
+                    <img src="/img/home/banner2.png" alt="" className='h-64 w-auto max-w-full object-cover  rounded-lg' />
                 </div>
             </div>
 
