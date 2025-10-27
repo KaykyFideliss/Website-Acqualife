@@ -3,6 +3,7 @@ import React, { useEffect, useRef } from 'react';
 import Info from "../components/MeuUno/Info";
 import Tanque from "../components/MeuUno/Tanque";
 import Logout from "../components/MeuUno/Logout";
+import Footer from '../components/Footer';
 
 const MeuUno = () => {
   return (
@@ -13,6 +14,7 @@ const MeuUno = () => {
 <Tanque />
 <Info />
 <Logout />
+<Footer />
 </div>
 
 

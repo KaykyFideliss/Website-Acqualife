@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { AiFillAndroid } from "react-icons/ai";
+import { useNavigate } from "react-router-dom";
 
 const DownloadApp = () => {
+  
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -12,9 +14,14 @@ const DownloadApp = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  const navigate = useNavigate();
+  
+  const goToLogin = () => {
+    navigate("/login"); // Correção aqui
+  };
+
   return (
     <section
-      
       className="relative w-full min-h-screen text-white flex flex-col justify-center items-center bg-white overflow-hidden pb-40 md:pb-56"
     >
       {/* Título */}
@@ -40,16 +47,22 @@ const DownloadApp = () => {
         <h2 className="text-azul-style font-zalando font-medium mb-2">Android</h2>
 
         <a
-         id="DownloadAppBtn"
-          // href=""
-          // download
-          className="mt-4 m-60 w-72 bg-gray-800 text-white  cursor-not-allowed font-zalando px-5 py-3 rounded-xl text-sm font-semibold hover:bg-gray-500 transition-colors text-center z-30"
+          id="DownloadAppBtn"
+          className="mt-4 mb-5 w-72 bg-gray-800 text-white cursor-not-allowed font-zalando px-5 py-3 rounded-xl text-sm font-semibold hover:bg-gray-500 transition-colors text-center z-30"
         >
           EM BREVE
-          {/* ACQUALIFE 1.0 (.apk) */}
         </a>
       </div>
-
+      
+      <h2 className="text-azul-style font-zalando font-medium mb-2">Usar sistema Online</h2>
+      
+      <button 
+        onClick={goToLogin} // Correção aqui - removi as barras
+        className="mb-32 w-72 bg-azul-style text-white font-zalando px-5 py-3 rounded-xl text-sm font-semibold hover:bg-blue-400 transition-colors text-center z-30"
+      >
+        USAR AGORA
+      </button>
+      
       {/* Mockups: absolute, invadem levemente o footer */}
       <div className="flex justify-center items-end w-full absolute bottom-[-4rem] md:bottom-[-6rem] pb-0 z-10 pointer-events-none">
         {isMobile ? (

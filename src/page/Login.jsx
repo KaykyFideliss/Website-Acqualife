@@ -47,10 +47,19 @@ const Login = () => {
   return (
     <div className="h-screen w-screen flex flex-col md:flex-row items-center justify-center">
       {/* --- LADO ESQUERDO --- */}
-      <div className="hidden md:flex md:w-1/2 ml-14 h-[800px] md:h-[500px] bg-gradient-to-tr rounded-xl bg-azul-style items-center justify-center p-6 relative">
-        <img src="null" alt="" className="absolute inset-0 w-full h-full object-cover opacity-20 rounded-xl" />
-        <div className="relative z-10 text-center px-4"></div>
-      </div>
+    <div className="hidden md:flex md:w-1/2 ml-14 h-[800px] md:h-[600px] bg-gradient-to-tr rounded-xl bg-azul-style items-center justify-center p-6 relative">
+  <video
+    src="/img/login/acqualife-loop.mp4"
+    autoPlay
+    loop
+    muted
+    className="absolute inset-0 w-full h-full object-cover  rounded-xl"
+  />
+  <div className=" z-10 text-center px-4">
+    {/* Conteúdo acima do vídeo */}
+  </div>
+</div>
+
 
       {/* --- LADO DIREITO (formulário) --- */}
       <div className="flex w-full md:w-1/2 items-center justify-center p-6">

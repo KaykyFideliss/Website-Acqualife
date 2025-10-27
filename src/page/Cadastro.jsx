@@ -79,14 +79,23 @@ const Cadastro = () => {
 
   return (
     <div className="h-screen w-screen flex flex-col md:flex-row items-center justify-center">
-      {/* --- CARD ESQUERDO --- */}
-      <div className="mt-44 hidden md:flex md:w-1/2 ml-14 h-[800px] md:h-[700px] bg-gradient-to-tr rounded-xl bg-azul-style items-center justify-center p-6 relative">
-        <img src="null" alt="" className="absolute inset-0 w-full h-full object-cover opacity-20 rounded-xl" />
-        <div className="relative z-10 text-center px-4"></div>
-      </div>
+          {/* --- LADO ESQUERDO --- */}
+    <div className="hidden md:flex md:w-1/2 ml-14 h-[800px] md:h-[7 00px] bg-gradient-to-tr rounded-xl bg-azul-style items-center justify-center p-6 relative">
+  <video
+    src="/img/login/acqualife-loop.mp4"
+    autoPlay
+    loop
+    muted
+    className="absolute inset-0 w-full h-full object-cover  rounded-xl"
+  />
+  <div className=" z-10 text-center px-4">
+    {/* Conteúdo acima do vídeo */}
+  </div>
+</div>
+
 
       {/* --- FORM --- */}
-      <div className="flex w-full mt-44 md:w-1/2 items-center justify-center p-6">
+      <div className="flex w-full mt-1 md:w-1/2 items-center justify-center p-6">
         <div className="w-full max-w-sm">
           <img className="w-60 h-30 mx-auto " src="img/logo.png" alt="Logo" />
           <h2 className="text-3xl text-azul-style font-zalando font-semibold mb-6 text-center">Cadastro</h2>

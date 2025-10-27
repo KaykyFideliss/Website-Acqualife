@@ -31,3 +31,24 @@ position: relative;
 ::-webkit-scrollbar-thumb:hover {
   background: #0D6DFF;
 }
+
+
+/* 🌊 Scroll estilizado e fino */
+.scroll-thin::-webkit-scrollbar {
+  height: 4px; /* altura do scroll horizontal */
+  width: 6px;  /* largura do scroll vertical */
+}
+
+.scroll-thin::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+
+.scroll-thin::-webkit-scrollbar-thumb {
+  background-color: white;
+ ;
+}
+
+.scroll-thin::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(255, 255, 255, 0.7);
+}

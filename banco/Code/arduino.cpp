@@ -196,6 +196,4 @@ void loop() {
   delay(100);
 }
 
-
-Adicionei o MAC Address único do dispositivo para identificação no servidor.
-Corrigi o parâmetro de identificação do usuário na URL de requisição para usar 'id' em vez de 'id_user'. 
+ 
