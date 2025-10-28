@@ -29,12 +29,12 @@ const CarroselSistema = () => {
         </div>
       </div>
 
-      {/* VIDEO */}
+      {/* VIDEO
       <div className="flex justify-center items-center  px-4 md:px-24 lg:px-24 mt-8">
         <div className="w-full max-w-4xl">
           <VideoPlayer />
         </div>
-      </div>
+      </div> */}
 
 
       <p className=' font-zalando text-justify text-xl'>
