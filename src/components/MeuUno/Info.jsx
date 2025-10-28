@@ -1,6 +1,7 @@
-import React, { memo, useEffect, useState, useRef } from "react";
+import React, { memo, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { useFetchData } from "../../hooks/useFetchData";
+import { useFetchHistory } from "../../hooks/useFetchHistory";
 import {
   LineChart,
   Line,
@@ -11,7 +12,7 @@ import {
   ResponsiveContainer,
   Legend,
 } from "recharts";
-import { IoSettingsSharp } from "react-icons/io5";
+import { IoSettingsSharp, IoRefresh } from "react-icons/io5";
 
 const InfoCard = memo(({ title, value, unit, delay }) => (
   <motion.div
@@ -28,44 +29,47 @@ const InfoCard = memo(({ title, value, unit, delay }) => (
 ));
 
 const Info = () => {
-  const { data, loading } = useFetchData();
-  const [history, setHistory] = useState([]);
+  const { data, loading, error, lastUpdate, refetch } = useFetchData();
+  const { history: historyFromDB, loading: historyLoading, refetch: refetchHistory } = useFetchHistory();
   const [modalChart, setModalChart] = useState(null);
   const [modalUser, setModalUser] = useState(false);
+  const [forceUpdate, setForceUpdate] = useState(0);
+  
   const user = JSON.parse(localStorage.getItem("user")) || {};
 
-  const historyRef = useRef([]);
+  // ✅ CORREÇÃO: Verificar se historyFromDB existe antes de mapear
+  const displayHistory = historyFromDB ? historyFromDB.map(item => ({
+    time: item.time,
+    volume1: item.volume1,
+    volume2: item.volume2,
+    ph: item.ph
+  })) : [];
 
+  // ✅ Forçar atualização periódica do componente
   useEffect(() => {
-    if (data && data.volume1 !== undefined) {
-      const now = new Date();
-      const time = now.toLocaleTimeString("pt-BR", {
-        hour: "2-digit",
-        minute: "2-digit",
-        second: "2-digit",
-        hour12: false,
-      });
+    const interval = setInterval(() => {
+      setForceUpdate(prev => prev + 1);
+    }, 1000);
+    
+    return () => clearInterval(interval);
+  }, []);
 
-      const updatedHistory = [
-        ...historyRef.current.slice(-19),
-        {
-          time,
-          volume1: data.volume1,
-          volume2: data.volume2,
-          ph: data.ph,
-        },
-      ];
+  // ✅ Atualizar manualmente
+  const handleRefresh = () => {
+    refetch();
+    refetchHistory();
+    setForceUpdate(prev => prev + 1);
+  };
 
-      historyRef.current = updatedHistory;
-      setHistory([...updatedHistory]);
-    }
-  }, [data]);
-
-  // Loading state melhorado
-  if (loading && history.length === 0) {
+  // ✅ CORREÇÃO: Loading state mais flexível
+  if ((loading || historyLoading) && displayHistory.length === 0) {
     return (
       <section className="w-full min-h-screen text-white px-6 md:px-20 py-16 flex flex-col items-center justify-center">
-        <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-blue-500"></div>
+        <motion.div
+          animate={{ rotate: 360 }}
+          transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+          className="rounded-full h-16 w-16 border-t-2 border-b-2 border-blue-500"
+        />
         <p className="text-xl mt-4">Carregando dados do sistema...</p>
       </section>
     );
@@ -73,9 +77,13 @@ const Info = () => {
 
   const TankChart = ({ fullscreen }) => (
     <ResponsiveContainer width="100%" height={fullscreen ? 700 : 500}>
-      <LineChart data={history}>
+      <LineChart data={displayHistory} key={forceUpdate}>
         <CartesianGrid strokeDasharray="3 3" stroke="#ffff" />
-        <XAxis dataKey="time" stroke="#ffff" interval={0} />
+        <XAxis 
+          dataKey="time" 
+          stroke="#ffff" 
+          interval={0}
+        />
         <YAxis
           stroke="#ffff"
           domain={[0, 7000]}
@@ -107,7 +115,7 @@ const Info = () => {
 
   const PHChart = ({ fullscreen }) => (
     <ResponsiveContainer width="100%" height={fullscreen ? 700 : 500}>
-      <LineChart data={history}>
+      <LineChart data={displayHistory} key={forceUpdate}>
         <CartesianGrid strokeDasharray="3 3 " stroke="#fff" />
         <XAxis dataKey="time" stroke="#ffff" interval={0} />
         <YAxis
@@ -142,17 +150,11 @@ const Info = () => {
         <h1 className="text-xl md:text-5xl font-bold font-zalando text-[#0D6DFF] mb-4 text-center">
           MEU SISTEMA ACQUALIFE
         </h1>
+        <p className="text-gray-600 text-sm">
+          Dados em tempo real - Atualizado: {data.timestamp || 'Carregando...'}
+        </p>
       </motion.div>
 
-      {/* Ícone de Config */}
-      <div className="w-full flex justify-end max-w-6xl mb-6"> 
-        <button
-          className="text-azul-style text-3xl hover:text-blue-400"
-          onClick={() => setModalUser(true)}
-        >
-          <IoSettingsSharp />
-        </button>
-      </div>
 
       {/* CARDS */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-6xl">
@@ -168,7 +170,7 @@ const Info = () => {
           onClick={() => setModalChart("tanques")}
         >
           <h2 className="text-lg font-zalando font-semibold mb-4 text-white flex justify-center">
-            Histórico de Níveis dos Tanques
+            Histórico de Nível do Tanque
           </h2>
           <TankChart fullscreen={false} />
         </div>
@@ -187,30 +189,37 @@ const Info = () => {
       {/* HISTÓRICO COMPLETO */}
       <div className="w-full max-w-6xl mt-10 bg-azul-style p-6 rounded-2xl shadow-lg text-white scroll-thin">
         <h2 className="text-lg font-zalando font-semibold mb-4 flex justify-center">
-          Histórico Completo dos Tanques
+          Histórico Completo (Últimas 50 leituras)
         </h2>
         <div className="overflow-x-auto scroll-thin">
           <table className="w-full table-auto border-collapse rounded-xl font-zalando">
             <thead>
               <tr className="bg-white text-azul-style">
                 <th className="px-4 py-2 border">Horário</th>
-                <th className="px-4 py-2 border">Volume Tanque 1 (ML)</th>
-                <th className="px-4 py-2 border">Volume Tanque 2 (ML)</th>
+                <th className="px-4 py-2 border">Volume Tanque (ML)</th>
                 <th className="px-4 py-2 border">pH</th>
               </tr>
             </thead>
             <tbody>
-              {history.map((item, index) => (
-                <tr
-                  key={index}
-                  className={index % 2 === 0 ? "bg-blue-500" : "bg-blue-600"}
-                >
-                  <td className="px-4 py-2 border">{item.time}</td>
-                  <td className="px-4 py-2 border">{item.volume1}</td>
-                  <td className="px-4 py-2 border">{item.volume2}</td>
-                  <td className="px-4 py-2 border">{item.ph.toFixed(2)}</td>
+              {/* ✅ CORREÇÃO: Verificação de segurança */}
+              {displayHistory && displayHistory.length > 0 ? (
+                displayHistory.slice(0, 50).map((item, index) => (
+                  <tr
+                    key={index}
+                    className={index % 2 === 0 ? "bg-blue-500" : "bg-blue-600"}
+                  >
+                    <td className="px-4 py-2 border">{item.time}</td>
+                    <td className="px-4 py-2 border">{item.volume1}</td>
+                    <td className="px-4 py-2 border">{item.ph?.toFixed(2)}</td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td colSpan="3" className="px-4 py-4 text-center border">
+                    Nenhum dado histórico disponível
+                  </td>
                 </tr>
-              ))}
+              )}
             </tbody>
           </table>
         </div>
@@ -223,19 +232,102 @@ const Info = () => {
         transition={{ duration: 2, repeat: Infinity }}
       >
         <div className="w-2 h-2 animate-pulse bg-green-600 rounded-full"></div>
-        Atualizando automaticamente...
+        Conectado ao banco de dados - Atualizando automaticamente...
       </motion.div>
 
-      {/* MODAIS (mantidos iguais) */}
-      {modalUser && (
-        <div className="fixed inset-0 bg-black/75 overflow-hidden flex items-center justify-center z-50 p-4">
-          {/* ... código do modal usuário igual ... */}
+      {/* MODAIS DOS GRÁFICOS */}
+      {modalChart && (
+        <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
+          <motion.div
+            className="bg-azul-style rounded-2xl p-6 w-full max-w-6xl max-h-[90vh] overflow-auto"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.3 }}
+          >
+            <div className="flex justify-between items-center mb-6">
+              <h2 className="text-2xl font-bold text-white">
+                {modalChart === "tanques" 
+                  ? "Histórico de Nível do Tanque" 
+                  : "Histórico de pH"
+                }
+              </h2>
+              <button
+                onClick={() => setModalChart(null)}
+                className="text-white text-2xl hover:text-gray-300"
+              >
+                ✕
+              </button>
+            </div>
+            
+            {modalChart === "tanques" ? (
+              <TankChart fullscreen={true} />
+            ) : (
+              <PHChart fullscreen={true} />
+            )}
+            
+            <div className="flex justify-center mt-6">
+              <button
+                onClick={() => setModalChart(null)}
+                className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg transition-colors"
+              >
+                Fechar
+              </button>
+            </div>
+          </motion.div>
         </div>
       )}
 
-      {modalChart && (
-        <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
-          {/* ... código do modal gráfico igual ... */}
+      {/* MODAL USUÁRIO */}
+      {modalUser && (
+        <div className="fixed inset-0 bg-black/75 overflow-hidden flex items-center justify-center z-50 p-4">
+          <motion.div
+            className="bg-white rounded-2xl p-8 w-full max-w-md"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.3 }}
+          >
+         
+            
+            <div className="space-y-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Usuário
+                </label>
+                <input
+                  type="text"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  defaultValue={user.name || ""}
+                  placeholder="Seu nome"
+                />
+              </div>
+              
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Email
+                </label>
+                <input
+                  type="email"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  defaultValue={user.email || ""}
+                  placeholder="seu@email.com"
+                />
+              </div>
+              
+              <button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg transition-colors font-semibold">
+                Salvar Configurações
+              </button>
+            </div>
+            
+            <div className="mt-6 pt-6 border-t border-gray-200">
+              <button
+                onClick={handleRefresh}
+                className="flex items-center justify-center gap-2 w-full bg-green-600 hover:bg-green-700 text-white py-3 rounded-lg transition-colors"
+              >
+                <IoRefresh className={`text-lg ${loading ? 'animate-spin' : ''}`} />
+                Atualizar Dados Agora
+              </button>
+            </div>
+          </motion.div>
         </div>
       )}
     </section>
