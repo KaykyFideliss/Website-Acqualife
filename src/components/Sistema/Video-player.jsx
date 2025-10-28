@@ -4,7 +4,7 @@ import { useRef, useState, useEffect } from "react"
 import { Play, Pause, Volume2, VolumeX, Subtitles } from "lucide-react"
 
 export default function VideoPlayer({
-  src = "/img/Sistema/video-marcela.mp4",
+  src = "/img/Sistema/videomarcelaa.mp4",
   poster = "",
 }) {
   const videoRef = useRef(null)
