@@ -1,13 +1,27 @@
 <?php
-include 'conexao.php'; // importa a conexão com o banco
+// ✅ CORS headers
+header("Access-Control-Allow-Origin: http://localhost:5173");
+header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
+header("Access-Control-Allow-Headers: Content-Type");
+header("Content-Type: text/plain");
 
-$resultado = $conn->query("SELECT * FROM arduino ORDER BY id DESC LIMIT 1");
+// Preflight request
+if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
+    http_response_code(200);
+    exit();
+}
+
+include 'conexao.php';
+
+// ✅ CORREÇÃO: Usar data_atualizacao em vez de data_hora
+$resultado = $conn->query("SELECT * FROM arduino ORDER BY data_atualizacao DESC LIMIT 1");
 
 if ($resultado && $resultado->num_rows > 0) {
     $row = $resultado->fetch_assoc();
-    echo $row['volume'] . "," . $row['volume2'] . "," . $row['ph'];
+    // ✅ CORREÇÃO: Campo correto é data_atualizacao
+    echo $row['volume'] . "," . $row['volume2'] . "," . $row['ph'] . "," . $row['data_atualizacao'];
 } else {
-    echo "0,0,0";
+    echo "0,0,0,Nenhum dado";
 }
 
 $conn->close();

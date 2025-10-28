@@ -1,38 +1,41 @@
 <?php
-header("Content-Type: application/json");
-require_once("conexao.php");
+// ✅ ADICIONAR HEADERS CORS
+header("Access-Control-Allow-Origin: http://localhost:5173");
+header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
+header("Access-Control-Allow-Headers: Content-Type");
 
-$dados = json_decode(file_get_contents("php://input"), true);
-
-if (!$dados) {
-    echo json_encode(["status" => "error", "message" => "Nenhum dado recebido"]);
-    exit;
+// Se for requisição OPTIONS (preflight), retorna OK
+if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
+    http_response_code(200);
+    exit();
 }
 
-$mac = $conn->real_escape_string($dados["mac_address"] ?? '');
-$ph = floatval($dados["ph"] ?? 0);
-$volume = intval($dados["volume"] ?? 0);
-$volume2 = intval($dados["volume2"] ?? 0);
-$id_user = intval($dados["id_user"] ?? 0);
+require 'conexao.php';
 
-if (empty($mac)) {
-    echo json_encode(["status" => "error", "message" => "MAC address ausente"]);
-    exit;
-}
+// Dados recebidos
+$mac = $_GET['mac'];
+$ph = $_GET['ph'];
+$volume = $_GET['volume'];
+$volume2 = $_GET['volume2'] ?? 0;
+$id_user = $_GET['id_user'] ?? 1;
 
 // Verifica se já existe o MAC
-$sql = "SELECT id FROM arduino WHERE mac_address = '$mac'";
-$result = $conn->query($sql);
+$sql_check = "SELECT id FROM arduino WHERE mac_address = '$mac'";
+$result = $conn->query($sql_check);
 
 if ($result->num_rows > 0) {
+    // ATUALIZAR
     $sql = "UPDATE arduino SET ph=$ph, volume=$volume, volume2=$volume2, id_user=$id_user WHERE mac_address='$mac'";
 } else {
+    // INSERIR
     $sql = "INSERT INTO arduino (mac_address, ph, volume, volume2, id_user) VALUES ('$mac', $ph, $volume, $volume2, $id_user)";
 }
 
 if ($conn->query($sql) === TRUE) {
-    echo json_encode(["status" => "success", "message" => "Dados salvos com sucesso"]);
+    echo "OK";
 } else {
-    echo json_encode(["status" => "error", "message" => $conn->error]);
+    echo "Erro: " . $conn->error;
 }
+
+$conn->close();
 ?>
