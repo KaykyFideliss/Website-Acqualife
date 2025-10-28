@@ -4,7 +4,7 @@ import VideoPlayer from './Video-player'
 
 const CarroselSistema = () => {
   return (
-    <section className="w-full min-h-screen text-white px-6 md:px-20 py-16 flex flex-col items-center">
+    <section className="w-full  text-white px-6 md:px-20 py-16 flex flex-col items-center">
 
       {/* Título super rápido */}
       <motion.div
