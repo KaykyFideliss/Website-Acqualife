@@ -53,12 +53,12 @@ try {
     }
 
     // ✅ 2. INSERIR NA TABELA ARDUINO_HISTORICO
-    $sql_historico = "INSERT INTO arduino_historico (mac_address, ph, volume, id_user, data_registro) 
-                     VALUES ('$mac', $ph, $volume, $id_user, NOW())";
+  $sql_historico = "INSERT INTO arduino_historico (mac_address, ph, volume, volume2, id_user, data_registro) 
+                 VALUES ('$mac', $ph, $volume, $volume2, $id_user, NOW())";  // ✅ SALVAR volume2 (ALTURA)
 
-    if (!$conn->query($sql_historico)) {
-        throw new Exception("Erro na tabela histórico: " . $conn->error);
-    }
+if (!$conn->query($sql_historico)) {
+    throw new Exception("Erro na tabela histórico: " . $conn->error);
+}
 
     $historico_id = $conn->insert_id;
 

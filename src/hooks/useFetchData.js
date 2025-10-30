@@ -1,9 +1,8 @@
 import { useState, useEffect } from 'react';
-
 export const useFetchData = () => {
   const [data, setData] = useState({
     volume1: 0,
-    volume2: 0,
+    altura: 0,  // ✅ ADICIONAR CAMPO ALTURA
     ph: 0,
     timestamp: 'Carregando...'
   });
@@ -17,7 +16,7 @@ export const useFetchData = () => {
       const response = await fetch('http://localhost/site-acqualife/acqualife-web/Api/Buscar_dados.php', {
         method: 'GET',
         headers: {
-          'Content-Type': 'text/plain', // ✅ Formato texto
+          'Content-Type': 'text/plain',
         }
       });
       
@@ -28,15 +27,13 @@ export const useFetchData = () => {
       const result = await response.text();
       console.log('✅ Dados recebidos (PHP):', result);
       
-      // ✅ FORMATO ESPERADO: "volume1,volume2,ph,timestamp"
-      // Exemplo: "6355,0,7.0,2025-10-28 13:37:47"
+      // ✅ FORMATO: "volume,altura,ph,timestamp"
       const parts = result.split(',');
       
-      // ✅ VERIFICAR se temos pelo menos 4 partes
       if (parts.length >= 4) {
         setData({
           volume1: parseFloat(parts[0]) || 0,
-          volume2: parseFloat(parts[1]) || 0,
+          altura: parseFloat(parts[1]) || 0,  // ✅ ALTURA VEM DA SEGUNDA PARTE
           ph: parseFloat(parts[2]) || 0,
           timestamp: parts[3] || new Date().toLocaleString()
         });
@@ -48,8 +45,6 @@ export const useFetchData = () => {
     } catch (err) {
       console.error('❌ Erro ao buscar dados:', err);
       setError(err.message);
-      
-      // Manter dados anteriores em caso de erro
     } finally {
       setLoading(false);
     }
@@ -57,10 +52,7 @@ export const useFetchData = () => {
 
   useEffect(() => {
     fetchData();
-    
-    // ✅ Atualizar a cada 3 segundos (mais rápido para teste)
     const interval = setInterval(fetchData, 3000);
-    
     return () => clearInterval(interval);
   }, []);
 
